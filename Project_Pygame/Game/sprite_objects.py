@@ -45,13 +45,13 @@ class Sprites:
                 'obj_action': []
             },
             'sprite_flame': {
-                'sprite': pygame.image.load('sprites/flame/base/0.gif').convert_alpha(),
+                'sprite': pygame.image.load('sprites/flame/base/0.png').convert_alpha(),
                 'viewing_angles': None,
                 'shift': 0.7,
                 'scale': (0.6, 0.6),
                 'side': 30,
                 'animation': deque(
-                    [pygame.image.load(f'sprites/flame/anim/{i}.gif').convert_alpha() for i in range(273)]),
+                    [pygame.image.load(f'sprites/flame/anim/{i}.png').convert_alpha() for i in range(60)]),
                 'death_animation': [],
                 'is_dead': 'immortal',
                 'dead_shift': 1.8,
