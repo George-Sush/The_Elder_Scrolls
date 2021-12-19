@@ -61,6 +61,7 @@ class Sprites:
                 'flag': 'decor',
                 'obj_action': []
             },
+
             'npc_devil0': {
                 'sprite': [pygame.image.load(f'sprites/npc/devil0/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
