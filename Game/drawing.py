@@ -137,7 +137,7 @@ class Drawing:
             self.sc.blit(exit, (button_exit.centerx - 85, button_exit.centery - 70))
 
             color = randrange(40)
-            label = label_font.render('DOOM', 1, (color, color, color))
+            label = label_font.render('SKYRIM', 1, (color, color, color))
             self.sc.blit(label, (15, -30))
 
             mouse_pos = pygame.mouse.get_pos()
