@@ -26,7 +26,7 @@ class Drawing:
         # weapon parameters
         self.weapon_base_sprite = pygame.image.load('sprites/weapons/shotgun/base/0.png').convert_alpha()
         self.weapon_shot_animation = deque([pygame.image.load(f'sprites/weapons/shotgun/shot/{i}.png')
-                                 .convert_alpha() for i in range(36)])
+                                 .convert_alpha() for i in range(1)])
         self.weapon_rect = self.weapon_base_sprite.get_rect()
         self.weapon_pos = (HALF_WIDTH - self.weapon_rect.width // 2, HEIGHT - self.weapon_rect.height)
         self.shot_length = len(self.weapon_shot_animation)

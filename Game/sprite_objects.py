@@ -29,12 +29,12 @@ class Sprites:
                 'obj_action': []
             },
             'sprite_pin': {
-                'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
+                'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
                 'viewing_angles': None,
                 'shift': 0.6,
                 'scale': (0.6, 0.6),
                 'side': 30,
-                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.png').convert_alpha() for i in range(8)]),
+                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.gif').convert_alpha() for i in range(20)]),
                 'death_animation': [],
                 'is_dead': 'immortal',
                 'dead_shift': None,
@@ -237,17 +237,6 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_soldier1'], (22.3, 2.89)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (22.76, 10.21)),
 
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (9.5, 4.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (9.5, 1.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (6.5, 8.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (2.5, 10.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (13.5, 14.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (3.5, 3.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_h'], (1.5, 4.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_h'], (5.5, 4.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_h'], (13.5, 4.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_h'], (22.5, 11.5)),
-            SpriteObject(self.sprite_parameters['sprite_door_h'], (11.5, 6.5)),
         ]
 
     @property
@@ -355,19 +344,7 @@ class SpriteObject:
                     self.object = self.visible_sprite()
                     # sprite animation
                     sprite_object = self.sprite_animation()
-            # print(sprite_width, sprite_height)
-            # if sprite_width > DOUBLE_WIDTH or sprite_height > DOUBLE_HEIGHT:
-            #     sprite_rect = sprite_object.get_rect()
-            #     kw = sprite_width / WIDTH
-            #     kh = sprite_height / HEIGHT
-            #     sprite_object = sprite_object.subsurface(sprite_rect.centerx - sprite_rect.w / kw / 2,
-            #                                              sprite_rect.centery - sprite_rect.h / kh / 2,
-            #                                              sprite_rect.w / kw, sprite_rect.h / kh)
-            #     sprite = pygame.transform.scale(sprite_object, (WIDTH, HEIGHT))
-            #     sprite_pos = (self.current_ray * SCALE - HALF_WIDTH, HALF_HEIGHT - HALF_HEIGHT + shift)
-            # else:
-            # sprite scale and pos
-            # print(sprite_object if type(sprite_object) == list else 0)
+
             sprite = pygame.transform.scale(sprite_object, (sprite_width, sprite_height))
             sprite_pos = (self.current_ray * SCALE - half_sprite_width, HALF_HEIGHT - half_sprite_height + shift)
 
