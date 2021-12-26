@@ -23,7 +23,7 @@ class Drawing:
         # menu
         self.menu_trigger = True
         self.menu_picture = pygame.image.load('img/bg.jpg').convert()
-        # weapon parameters
+        #
         self.weapon_base_sprite = pygame.image.load('sprites/weapons/shotgun/base/0.png').convert_alpha()
         self.weapon_shot_animation = deque([pygame.image.load(f'sprites/weapons/shotgun/shot/{i}.png')
                                  .convert_alpha() for i in range(1)])
@@ -45,7 +45,7 @@ class Drawing:
         self.sc.blit(self.textures['S'], (sky_offset, 0))
         self.sc.blit(self.textures['S'], (sky_offset - WIDTH, 0))
         self.sc.blit(self.textures['S'], (sky_offset + WIDTH, 0))
-        pygame.draw.rect(self.sc, DARKGRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
+        pygame.draw.rect(self.sc, (63, 155, 11), (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
 
     def world(self, world_objects):
         for obj in sorted(world_objects, key=lambda n: n[0], reverse=True):
