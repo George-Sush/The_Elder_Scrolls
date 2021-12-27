@@ -19,6 +19,7 @@ class Drawing:
                          3: pygame.image.load('img/wall3.png').convert(),
                          4: pygame.image.load('img/wall7.png').convert(),
                          'S': pygame.image.load('img/sky0.png').convert(),
+                         'F': pygame.image.load('img/floor0.png').convert(),
                          }
         # menu
         self.menu_trigger = True
@@ -26,7 +27,7 @@ class Drawing:
         #
         self.weapon_base_sprite = pygame.image.load('sprites/weapons/shotgun/base/0.png').convert_alpha()
         self.weapon_shot_animation = deque([pygame.image.load(f'sprites/weapons/shotgun/shot/{i}.png')
-                                 .convert_alpha() for i in range(1)])
+                                 .convert_alpha() for i in range(24)])
         self.weapon_rect = self.weapon_base_sprite.get_rect()
         self.weapon_pos = (HALF_WIDTH - self.weapon_rect.width // 2, HEIGHT - self.weapon_rect.height)
         self.shot_length = len(self.weapon_shot_animation)
@@ -36,7 +37,7 @@ class Drawing:
         self.shot_animation_count = 0
         self.shot_sound = pygame.mixer.Sound('sound/shotgun.wav')
         # shot SFX
-        self.sfx = deque([pygame.image.load(f'sprites/weapons/sfx/{i}.png').convert_alpha() for i in range(9)])
+        self.sfx = deque([pygame.image.load(f'sprites/weapons/sfx/{i}.gif').convert_alpha() for i in range(16)])
         self.sfx_length_count = 0
         self.sfx_length = len(self.sfx)
 
@@ -45,7 +46,7 @@ class Drawing:
         self.sc.blit(self.textures['S'], (sky_offset, 0))
         self.sc.blit(self.textures['S'], (sky_offset - WIDTH, 0))
         self.sc.blit(self.textures['S'], (sky_offset + WIDTH, 0))
-        pygame.draw.rect(self.sc, (63, 155, 11), (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
+        pygame.draw.rect(self.sc, (0, 70, 0), (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
 
     def world(self, world_objects):
         for obj in sorted(world_objects, key=lambda n: n[0], reverse=True):
