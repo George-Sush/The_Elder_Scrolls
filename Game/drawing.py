@@ -16,7 +16,7 @@ class Drawing:
         self.font_win = pygame.font.Font('font/font.ttf', 144)
         self.textures = {1: pygame.image.load('img/wall6.png').convert(),
                          2: pygame.image.load('img/wall5.png').convert(),
-                         3: pygame.image.load('img/wall3.png').convert(),
+                         3: pygame.image.load('img/wall4.png').convert(),
                          4: pygame.image.load('img/wall7.png').convert(),
                          'S': pygame.image.load('img/sky0.png').convert(),
                          'F': pygame.image.load('img/floor0.png').convert(),

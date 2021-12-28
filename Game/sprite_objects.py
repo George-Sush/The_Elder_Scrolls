@@ -32,7 +32,7 @@ class Sprites:
                 'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
                 'viewing_angles': None,
                 'shift': 0.6,
-                'scale': (0.6, 0.6),
+                'scale': (10, 10),
                 'side': 30,
                 'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.gif').convert_alpha() for i in range(1)]),
                 'death_animation': [],
@@ -169,16 +169,17 @@ class Sprites:
         }
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['sprite_barrel'], (5.9, 2.1)),
-            SpriteObject(self.sprite_parameters['sprite_pin'], (7.01, 13.47)),
+            SpriteObject(self.sprite_parameters['sprite_pin'], (17,13)),
             SpriteObject(self.sprite_parameters['sprite_flame'], (8.6, 5.6)),
             SpriteObject(self.sprite_parameters['npc_soldier0'], (2.5, 1.5)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (17.62, 9.66)),
             SpriteObject(self.sprite_parameters['npc_devil0'], (22.53, 9.00)),
             SpriteObject(self.sprite_parameters['npc_devil1'], (20.12, 3.55)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (18.29, 12.66)),
-
-
         ]
+        for i in range(1, 100, 15):
+            for u in range(1, 100, 20):
+                self.list_of_objects.append(SpriteObject(self.sprite_parameters['sprite_barrel'], (7+i/100, 21+u/100)))
 
     @property
     def sprite_shot(self):
