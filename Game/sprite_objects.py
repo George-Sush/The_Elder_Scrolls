@@ -168,7 +168,6 @@ class Sprites:
             },
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['sprite_barrel'], (5.9, 2.1)),
             SpriteObject(self.sprite_parameters['sprite_pin'], (17,13)),
             SpriteObject(self.sprite_parameters['sprite_flame'], (8.6, 5.6)),
             SpriteObject(self.sprite_parameters['npc_soldier0'], (2.5, 1.5)),
@@ -176,6 +175,7 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_devil0'], (22.53, 9.00)),
             SpriteObject(self.sprite_parameters['npc_devil1'], (20.12, 3.55)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (18.29, 12.66)),
+            SpriteObject(self.sprite_parameters['npc_soldier1'], (28,3, 18,6))
         ]
         for i in range(1, 100, 15):
             for u in range(1, 100, 20):
@@ -189,10 +189,9 @@ class Sprites:
     def blocked_doors(self):
         blocked_doors = Dict.empty(key_type=types.UniTuple(int32, 2), value_type=int32)
         for obj in self.list_of_objects:
-            if obj.flag == 'door_h' or obj.flag == 'door_v':
-                if obj.blocked:
-                    i, j = mapping(obj.x, obj.y)
-                    blocked_doors[(i, j)] = 0
+            if obj.blocked:
+                i, j = mapping(obj.x, obj.y)
+                blocked_doors[(i, j)] = 0
         return blocked_doors
 
 
