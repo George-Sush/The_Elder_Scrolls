@@ -168,14 +168,15 @@ class Sprites:
             },
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['sprite_pin'], (17,13)),
             SpriteObject(self.sprite_parameters['sprite_flame'], (8.6, 5.6)),
             SpriteObject(self.sprite_parameters['npc_soldier0'], (2.5, 1.5)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (17.62, 9.66)),
             SpriteObject(self.sprite_parameters['npc_devil0'], (22.53, 9.00)),
             SpriteObject(self.sprite_parameters['npc_devil1'], (20.12, 3.55)),
             SpriteObject(self.sprite_parameters['npc_soldier1'], (18.29, 12.66)),
-            SpriteObject(self.sprite_parameters['npc_soldier1'], (28,3, 18,6))
+            SpriteObject(self.sprite_parameters['npc_soldier1'], (28.3, 18.6)),
+            SpriteObject(self.sprite_parameters['sprite_door_v'], (8.3, 8.6)),
+            SpriteObject(self.sprite_parameters['sprite_door_h'], (3, 8.6)),
         ]
         for i in range(1, 100, 15):
             for u in range(1, 100, 20):
