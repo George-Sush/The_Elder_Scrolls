@@ -80,22 +80,22 @@ class Sprites:
                 'obj_action': deque(
                     [pygame.image.load(f'sprites/npc/devil0/anim/{i}.png').convert_alpha() for i in range(9)]),
             },
-            'npc_devil1': {
-                'sprite': [pygame.image.load(f'sprites/npc/devil1/base/{i}.png').convert_alpha() for i in range(8)],
+            'npc_tiger': {
+                'sprite': [pygame.image.load(f'sprites/npc/tiger/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
                 'shift': 0,
                 'scale': (0.9, 1.0),
                 'side': 30,
                 'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/devil1/death/{i}.png')
+                'death_animation': deque([pygame.image.load(f'sprites/npc/tiger/death/{i}.png')
                                            .convert_alpha() for i in range(2)]),
                 'is_dead': None,
                 'dead_shift': 0.5,
                 'animation_dist': None,
-                'animation_speed': 1,
+                'animation_speed': 5,
                 'blocked': True,  # <-------------------
                 'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/devil1/action/{i}.png')
+                'obj_action': deque([pygame.image.load(f'sprites/npc/tiger/action/{i}.png')
                                     .convert_alpha() for i in range(6)])
             },
             'npc_spriggan': {
@@ -110,7 +110,7 @@ class Sprites:
                 'is_dead': None,
                 'dead_shift': 1.7,
                 'animation_dist': None,
-                'animation_speed': 1,
+                'animation_speed': 5,
                 'blocked': True,
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/spriggan/action/{i}.png')
@@ -128,7 +128,7 @@ class Sprites:
                 'is_dead': None,
                 'dead_shift': 1.7,
                 'animation_dist': None,
-                'animation_speed': 1,
+                'animation_speed': 30,
                 'blocked': True,  # <-------------------
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/bear/action/{i}.png')
@@ -172,10 +172,11 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_spriggan'], (2.5, 1.5)),
             SpriteObject(self.sprite_parameters['npc_bear'], (17.62, 9.66)),
             SpriteObject(self.sprite_parameters['npc_devil0'], (22.53, 9.00)),
-            SpriteObject(self.sprite_parameters['npc_devil1'], (20.12, 3.55)),
+            SpriteObject(self.sprite_parameters['npc_tiger'], (20.12, 3.55)),
             SpriteObject(self.sprite_parameters['npc_bear'], (18.29, 12.66)),
             SpriteObject(self.sprite_parameters['npc_bear'], (2, 18.6)),
             SpriteObject(self.sprite_parameters['sprite_door_v'], (8.3, 8.6)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (4, 9)),
         ]
         for i in range(1, 100, 15):
             for u in range(1, 100, 20):
