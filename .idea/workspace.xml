@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="House">
+    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="NPC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprite_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/sprite_objects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/action/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/base/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/death/0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/sprites/npc/devil1/death/1.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641484198667</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="NPC">
+      <created>1641486901590</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1641486901590</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -342,6 +332,7 @@
     <MESSAGE value="Trees End" />
     <MESSAGE value="DOORS" />
     <MESSAGE value="House" />
-    <option name="LAST_COMMIT_MESSAGE" value="House" />
+    <MESSAGE value="NPC" />
+    <option name="LAST_COMMIT_MESSAGE" value="NPC" />
   </component>
 </project>
