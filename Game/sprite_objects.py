@@ -166,17 +166,51 @@ class Sprites:
                 'flag': 'door_v',
                 'obj_action': []
             },
+
+            'npc_peaceful': {
+                'sprite': pygame.image.load('sprites/npc/peaceful/base/0.png').convert_alpha(),
+                'viewing_angles': None,
+                'shift': 0.6,
+                'scale': (1, 1),
+                'side': 1,
+                'animation': deque([pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
+                'death_animation': [],
+                'is_dead': 'immortal',
+                'dead_shift': None,
+                'animation_dist': 300,
+                'animation_speed': 10,
+                'blocked': True,
+                'flag': 'decor',
+                'obj_action': []
+            },
+            'npc_boss': {
+                'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
+                'viewing_angles': True,
+                'shift': 0.8,
+                'scale': (1.2, 1.2),
+                'side': 30,
+                'animation': [],
+                'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
+                                         .convert_alpha() for i in range(2)]),
+                'is_dead': None,
+                'dead_shift': 1.7,
+                'animation_dist': None,
+                'animation_speed': 10,
+                'blocked': True,  # <-------------------
+                'flag': 'npc',
+                'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
+                                    .convert_alpha() for i in range(6)])
+            },
         }
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['sprite_flame'], (8.6, 5.6)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (2.5, 1.5)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (17.62, 9.66)),
-            SpriteObject(self.sprite_parameters['npc_devil0'], (22.53, 9.00)),
-            SpriteObject(self.sprite_parameters['npc_tiger'], (20.12, 3.55)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (18.29, 12.66)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (2, 18.6)),
-            SpriteObject(self.sprite_parameters['sprite_door_v'], (8.3, 8.6)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (4, 9)),
+            SpriteObject(self.sprite_parameters['npc_bear'], (18, 14.5)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (19, 14.5)),
+            SpriteObject(self.sprite_parameters['npc_bear'], (20, 14.5)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (21, 14.5)),
+            SpriteObject(self.sprite_parameters['npc_bear'], (22, 14.5)),
+            SpriteObject(self.sprite_parameters['npc_peaceful'], (9.5, 10.5)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
         ]
         for i in range(1, 100, 15):
             for u in range(1, 100, 20):
@@ -190,7 +224,7 @@ class Sprites:
     def blocked_doors(self):
         blocked_doors = Dict.empty(key_type=types.UniTuple(int32, 2), value_type=int32)
         for obj in self.list_of_objects:
-            if obj.blocked:
+            if obj.flag in {'door_h', 'door_v'} and obj.blocked:
                 i, j = mapping(obj.x, obj.y)
                 blocked_doors[(i, j)] = 0
         return blocked_doors

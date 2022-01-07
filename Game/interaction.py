@@ -50,14 +50,15 @@ class Interaction:
             for obj in sorted(self.sprites.list_of_objects, key=lambda obj: obj.distance_to_sprite):
                 if obj.is_on_fire[1]:
                     if obj.is_dead != 'immortal' and not obj.is_dead:
-                        if ray_casting_npc_player(obj.x, obj.y,
-                                                  self.sprites.blocked_doors,
-                                                  world_map, self.player.pos):
-                            if obj.flag == 'npc':
-                                self.pain_sound.play()
-                            obj.is_dead = True
-                            obj.blocked = None
-                            self.drawing.shot_animation_trigger = False
+                        if obj.distance_to_sprite < TILE:
+                            if ray_casting_npc_player(obj.x, obj.y,
+                                                      self.sprites.blocked_doors,
+                                                      world_map, self.player.pos):
+                                if obj.flag == 'npc':
+                                    self.pain_sound.play()
+                                obj.is_dead = True
+                                obj.blocked = None
+                                self.drawing.shot_animation_trigger = False
                     if (obj.flag == 'door_h' or obj.flag == 'door_v') and obj.distance_to_sprite < TILE:
                         obj.door_open_trigger = True
                         obj.blocked = None

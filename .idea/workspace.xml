@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="NPC">
+    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="NPC end">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/drawing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/drawing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/interaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/sprite_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/sprite_objects.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641486901590</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="NPC end">
+      <created>1641488634606</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1641488634606</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,6 +344,7 @@
     <MESSAGE value="DOORS" />
     <MESSAGE value="House" />
     <MESSAGE value="NPC" />
-    <option name="LAST_COMMIT_MESSAGE" value="NPC" />
+    <MESSAGE value="NPC end" />
+    <option name="LAST_COMMIT_MESSAGE" value="NPC end" />
   </component>
 </project>
