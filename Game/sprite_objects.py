@@ -170,15 +170,17 @@ class Sprites:
             'npc_peaceful': {
                 'sprite': pygame.image.load('sprites/npc/peaceful/base/0.png').convert_alpha(),
                 'viewing_angles': None,
-                'shift': 0.6,
+                'shift': 0.1,
                 'scale': (1, 1),
-                'side': 1,
-                'animation': deque([pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': None,
-                'animation_dist': 300,
-                'animation_speed': 10,
+                'side': 30,
+                'animation': deque(
+                    [pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
+                'death_animation': deque([pygame.image.load(f'sprites/npc/peaceful/death/{i}.png')
+                                          .convert_alpha() for i in range(2)]),
+                'is_dead': None,
+                'dead_shift': 2.6,
+                'animation_dist': 90,
+                'animation_speed': 1,
                 'blocked': True,
                 'flag': 'decor',
                 'obj_action': []
@@ -186,9 +188,9 @@ class Sprites:
             'npc_boss': {
                 'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
-                'shift': 0.8,
+                'shift': 0.1,
                 'scale': (1.2, 1.2),
-                'side': 30,
+                'side': 50,
                 'animation': [],
                 'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
                                          .convert_alpha() for i in range(2)]),
@@ -203,18 +205,9 @@ class Sprites:
             },
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['sprite_flame'], (8.6, 5.6)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (18, 14.5)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (19, 14.5)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (20, 14.5)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (21, 14.5)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (22, 14.5)),
             SpriteObject(self.sprite_parameters['npc_peaceful'], (9.5, 10.5)),
             SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
         ]
-        for i in range(1, 100, 15):
-            for u in range(1, 100, 20):
-                self.list_of_objects.append(SpriteObject(self.sprite_parameters['sprite_barrel'], (7+i/100, 21+u/100)))
 
     @property
     def sprite_shot(self):

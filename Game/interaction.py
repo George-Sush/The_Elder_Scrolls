@@ -43,7 +43,7 @@ class Interaction:
         self.sprites = sprites
         self.drawing = drawing
         self.pain_sound = pygame.mixer.Sound('sound/pain.wav')
-        # self.font = pygame.font.SysFont('Arial', 36, bold=True)
+        self.font = pygame.font.SysFont('Arial', 36, bold=True)
 
     def interaction_objects(self):
         if self.player.shot and self.drawing.shot_animation_trigger:

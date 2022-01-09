@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="NPC end">
+    <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="BOSS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/drawing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/drawing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/interaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/sprite_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/sprite_objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641488634606</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="BOSS">
+      <created>1641564655437</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1641564655437</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -345,6 +351,7 @@
     <MESSAGE value="House" />
     <MESSAGE value="NPC" />
     <MESSAGE value="NPC end" />
-    <option name="LAST_COMMIT_MESSAGE" value="NPC end" />
+    <MESSAGE value="BOSS" />
+    <option name="LAST_COMMIT_MESSAGE" value="BOSS" />
   </component>
 </project>
