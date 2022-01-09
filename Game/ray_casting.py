@@ -1,5 +1,6 @@
 import pygame
-from settings import *
+from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT
 from map import world_map, WORLD_WIDTH, WORLD_HEIGHT
 from numba import njit
 
