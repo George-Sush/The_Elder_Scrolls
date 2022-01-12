@@ -1,8 +1,10 @@
 import pygame
-from settings import *
+from settings import HP, HALF_WIDTH, WIDTH, DARKORANGE, BLACK, MAP_TILE,\
+    DARKBROWN, HALF_HEIGHT, FPS_POS, RED, MAP_SCALE, YELLOW, MAP_POS
 from map import mini_map
 from collections import deque
 from random import randrange
+from interaction import *
 import sys
 
 
@@ -59,6 +61,11 @@ class Drawing:
         display_fps = str(int(clock.get_fps()))
         render = self.font.render(display_fps, 0, DARKORANGE)
         self.sc.blit(render, FPS_POS)
+
+    def Hit_points(self):
+        display_hp = str(HP)
+        render = self.font.render(display_hp, 0, RED)
+        self.sc.blit(render, (30, 10))
 
     def win(self):
         render = self.font_win.render('YOU WIN!!!', 1, (randrange(40, 120), 0, 0))

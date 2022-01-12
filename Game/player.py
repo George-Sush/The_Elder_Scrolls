@@ -1,5 +1,5 @@
 from map import collision_walls
-from settings import *
+from settings import DOUBLE_PI, HALF_WIDTH, HALF_HEIGHT, player_pos, player_angle, player_speed
 import pygame
 import math
 
