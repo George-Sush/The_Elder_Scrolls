@@ -63,7 +63,7 @@ class Drawing:
         self.sc.blit(render, FPS_POS)
 
     def Hit_points(self):
-        display_hp = str(HP)
+        display_hp = str(HP[0])
         render = self.font.render(display_hp, 0, RED)
         self.sc.blit(render, (30, 10))
 

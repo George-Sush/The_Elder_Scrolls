@@ -4,10 +4,7 @@
     <list default="true" id="5cf2300a-420d-4622-843e-d01469462618" name="Default Changelist" comment="BOSS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/drawing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/drawing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/interaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ray_casting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ray_casting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/sprite_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game/sprite_objects.py" afterDir="false" />
     </list>
