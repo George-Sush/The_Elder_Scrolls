@@ -1,5 +1,5 @@
 from player import Player
-from sprite_objects import *
+from sprite_objects import pygame, WIDTH, HEIGHT, MAP_RES, Sprites
 from ray_casting import ray_casting_walls
 from drawing import Drawing
 from interaction import Interaction
