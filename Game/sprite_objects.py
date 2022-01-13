@@ -339,7 +339,7 @@ class SpriteObject:
         dx, dy = self.x - player.x, self.y - player.y
         self.distance_to_sprite = math.sqrt(dx ** 2 + dy ** 2)
         if self.distance_to_sprite <= 100:
-            HP[0] = int(HP[0]) - 10
+            HP[0] = int(HP[0]) - 1
 
 
 
