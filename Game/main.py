@@ -3,6 +3,8 @@ from sprite_objects import pygame, WIDTH, HEIGHT, MAP_RES, Sprites
 from ray_casting import ray_casting_walls
 from drawing import Drawing
 from interaction import Interaction
+from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_WIDTH, HALF_HEIGHT, WIDTH, HEIGHT, MAP_RES
 
 pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT), pygame.DOUBLEBUF)
@@ -26,6 +28,7 @@ while True:
     walls, wall_shot = ray_casting_walls(player, drawing.textures)
     drawing.world(walls + [obj.object_locate(player) for obj in sprites.list_of_objects])
     drawing.fps(clock)
+    drawing.Hit_points()
     drawing.mini_map()
     drawing.player_weapon([wall_shot, sprites.sprite_shot])
 

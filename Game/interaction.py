@@ -1,4 +1,5 @@
-from settings import *
+from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT
 from map import world_map
 from ray_casting import mapping
 import math
@@ -13,10 +14,8 @@ def ray_casting_npc_player(npc_x, npc_y, blocked_doors, world_map, player_pos):
     delta_x, delta_y = ox - npc_x, oy - npc_y
     angle = math.atan2(delta_y, delta_x)
     angle += math.pi
-    # ray casting
     sin_a = math.sin(angle)
     cos_a = math.cos(angle)
-    # verticals
     x, dx = (xm + TILE, 1) if cos_a >= 0 else (xm, -1)
     for i in range(int(abs(delta_x) // TILE)):
         depth_v = (x - ox) / cos_a
@@ -25,7 +24,6 @@ def ray_casting_npc_player(npc_x, npc_y, blocked_doors, world_map, player_pos):
         if tile_v in world_map or tile_v in blocked_doors:
             return False
         x += dx * TILE
-    # horizontals
     y, dy = (ym + TILE, 1) if sin_a >= 0 else (ym, -1)
     for i in range(int(abs(delta_y) // TILE)):
         depth_h = (y - oy) / sin_a

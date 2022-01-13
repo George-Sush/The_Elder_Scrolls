@@ -1,5 +1,7 @@
 import pygame
-from settings import *
+from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, FAKE_RAYS, FAKE_RAYS_RANGE, \
+    DOUBLE_HEIGHT, DOUBLE_PI, HP
 from collections import deque
 from ray_casting import mapping
 from numba.core import types
@@ -207,7 +209,9 @@ class Sprites:
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['npc_peaceful'], (9.5, 10.5)),
             SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (7, 12)),
         ]
+
 
     @property
     def sprite_shot(self):
@@ -241,8 +245,7 @@ class SpriteObject:
         self.flag = parameters['flag']
         self.obj_action = parameters['obj_action'].copy()
         self.x, self.y = pos[0] * TILE, pos[1] * TILE
-        self.side = parameters['side'] # <-------------------------------------------------------
-        # self.pos = self.x - self.side // 2, self.y - self.side // 2
+        self.side = parameters['side']
         self.dead_animation_count = 0
         self.animation_count = 0
         self.npc_action_trigger = False
@@ -307,7 +310,7 @@ class SpriteObject:
                     shift = half_sprite_height * self.dead_shift
                     sprite_height = int(sprite_height / 1.3)
                 elif self.npc_action_trigger:
-                    sprite_object = self.npc_in_action()
+                    sprite_object = self.npc_in_action(player)
                 else:
                     # choose sprite for angle
                     self.object = self.visible_sprite()
@@ -332,6 +335,14 @@ class SpriteObject:
             return sprite_object
         return self.object
 
+    def Health_points(self, player):
+        dx, dy = self.x - player.x, self.y - player.y
+        self.distance_to_sprite = math.sqrt(dx ** 2 + dy ** 2)
+        if self.distance_to_sprite <= 400:
+            print(HP)
+
+
+
     def visible_sprite(self):
         if self.viewing_angles:
             if self.theta < 0:
@@ -353,7 +364,9 @@ class SpriteObject:
                 self.dead_animation_count = 0
         return self.dead_sprite
 
-    def npc_in_action(self):
+    def npc_in_action(self, player):
+        if self.obj_action:
+            self.Health_points(player)
         sprite_object = self.obj_action[0]
         if self.animation_count < self.animation_speed:
             self.animation_count += 1
@@ -371,3 +384,4 @@ class SpriteObject:
             self.x -= 3
             if abs(self.x - self.door_prev_pos) > TILE:
                 self.delete = True
+
