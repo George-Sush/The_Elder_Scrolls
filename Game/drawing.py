@@ -83,7 +83,6 @@ class Drawing:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_e]:
             self.sc.blit(self.dialog_0, self.weapon_pos)
-            print("Done")
 
     def mini_map(self):
         self.sc_map.fill(BLACK)
