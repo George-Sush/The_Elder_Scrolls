@@ -1,4 +1,5 @@
 import pygame
+import math
 from settings import HP, HALF_WIDTH, WIDTH, DARKORANGE, BLACK, MAP_TILE,\
     DARKBROWN, HALF_HEIGHT, FPS_POS, RED, MAP_SCALE, YELLOW, MAP_POS
 from map import mini_map
@@ -43,6 +44,8 @@ class Drawing:
         self.sfx = deque([pygame.image.load(f'sprites/weapons/sfx/{i}.gif').convert_alpha() for i in range(16)])
         self.sfx_length_count = 0
         self.sfx_length = len(self.sfx)
+        # dialog
+        self.dialog_0 = pygame.image.load(f'sprites/dialog/0.jpg').convert_alpha()
 
     def background(self):
         sky_offset = -10 * math.degrees(self.player.angle) % WIDTH
@@ -75,6 +78,12 @@ class Drawing:
         self.sc.blit(render, (rect.centerx - 430, rect.centery - 140))
         pygame.display.flip()
         self.clock.tick(15)
+
+    def dialog(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_e]:
+            self.sc.blit(self.dialog_0, self.weapon_pos)
+            print("Done")
 
     def mini_map(self):
         self.sc_map.fill(BLACK)

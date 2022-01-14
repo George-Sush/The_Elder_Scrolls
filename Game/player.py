@@ -63,8 +63,9 @@ class Player:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             exit()
-        if keys[pygame.K_e]:
-            print("Start dialog")
+        # if keys[pygame.K_e]:
+        #     draw_dialog()
+        #     print("Start dialog")
         if keys[pygame.K_w]:
             dx, dy = player_speed * cos_a, player_speed * sin_a
             self.detect_collision(dx, dy)

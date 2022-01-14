@@ -33,6 +33,8 @@ while True:
     drawing.mini_map()
     drawing.player_weapon([wall_shot, sprites.sprite_shot])
 
+    drawing.dialog()
+
     interaction.interaction_objects()
     interaction.npc_action()
     interaction.clear_world()
