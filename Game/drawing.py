@@ -79,6 +79,15 @@ class Drawing:
         pygame.display.flip()
         self.clock.tick(15)
 
+    def loss(self):
+        render = self.font_win.render('YOU LOSS!', 1, (randrange(30, 120), 0, 0))
+        rect = pygame.Rect(0, 0, 1000, 300)
+        rect.center = HALF_WIDTH, HALF_HEIGHT
+        pygame.draw.rect(self.sc, BLACK, rect, border_radius=50)
+        self.sc.blit(render, (rect.centerx - 430, rect.centery - 140))
+        pygame.display.flip()
+        self.clock.tick(15)
+
     def dialog(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_e] and abs(953 - self.player.x) <= 90 and abs(1011 - self.player.y) <= 90:

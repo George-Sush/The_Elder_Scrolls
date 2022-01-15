@@ -1,5 +1,5 @@
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP
 from map import world_map
 from ray_casting import mapping
 import math
@@ -94,6 +94,18 @@ class Interaction:
                     if event.type == pygame.QUIT:
                         exit()
                 self.drawing.win()
+
+    def check_loss(self):
+        if int(HP[0]) <= 0:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load('sound/win.mp3')
+            pygame.mixer.music.play()
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        exit()
+                self.drawing.loss()
+
 
     def play_music(self):
         pygame.mixer.pre_init(44100, -16, 2, 2048)
