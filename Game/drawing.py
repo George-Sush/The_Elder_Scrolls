@@ -81,7 +81,7 @@ class Drawing:
 
     def dialog(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_e]:
+        if keys[pygame.K_e] and abs(953 - self.player.x) <= 90 and abs(1011 - self.player.y) <= 90:
             self.sc.blit(self.dialog_0, self.weapon_pos)
 
     def mini_map(self):
