@@ -1,3 +1,4 @@
+import os
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
     TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP
 from map import world_map
@@ -90,6 +91,12 @@ class Interaction:
             pygame.mixer.music.load('sound/win.mp3')
             pygame.mixer.music.play()
             while True:
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_ESCAPE]:
+                    exit()
+                if keys[pygame.K_SPACE]:
+                    os.startfile(f'main.py')
+                    exit()
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         exit()
@@ -101,6 +108,12 @@ class Interaction:
             pygame.mixer.music.load('sound/win.mp3')
             pygame.mixer.music.play()
             while True:
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_ESCAPE]:
+                    exit()
+                if keys[pygame.K_SPACE]:
+                    os.startfile(f'main.py')
+                    exit()
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         exit()
