@@ -86,7 +86,7 @@ class Interaction:
         [self.sprites.list_of_objects.remove(obj) for obj in deleted_objects if obj.delete]
 
     def check_win(self):
-        if not len([obj for obj in self.sprites.list_of_objects if obj.flag == 'npc' and not obj.is_dead]):
+        if not len([obj for obj in self.sprites.list_of_objects if obj.name == 'boss' and not obj.is_dead]):
             pygame.mixer.music.stop()
             pygame.mixer.music.load('sound/win.mp3')
             pygame.mixer.music.play()

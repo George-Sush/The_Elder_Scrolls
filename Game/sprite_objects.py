@@ -28,7 +28,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'decor',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'barrel'
             },
             'sprite_pin': {
                 'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
@@ -44,7 +45,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'decor',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'pin'
             },
             'sprite_flame': {
                 'sprite': pygame.image.load('sprites/flame/base/0.png').convert_alpha(),
@@ -61,7 +63,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': None,
                 'flag': 'decor',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'flame'
             },
 
             'npc_devil0': {
@@ -81,6 +84,7 @@ class Sprites:
                 'flag': 'npc',
                 'obj_action': deque(
                     [pygame.image.load(f'sprites/npc/devil0/anim/{i}.png').convert_alpha() for i in range(9)]),
+                'name': 'devil0'
             },
             'npc_tiger': {
                 'sprite': [pygame.image.load(f'sprites/npc/tiger/base/{i}.png').convert_alpha() for i in range(8)],
@@ -98,7 +102,8 @@ class Sprites:
                 'blocked': True,  # <-------------------
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/tiger/action/{i}.png')
-                                    .convert_alpha() for i in range(6)])
+                                    .convert_alpha() for i in range(6)]),
+                'name': 'tiger'
             },
             'npc_spriggan': {
                 'sprite': [pygame.image.load(f'sprites/npc/spriggan/base/{i}.png').convert_alpha() for i in range(8)],
@@ -116,7 +121,8 @@ class Sprites:
                 'blocked': True,
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/spriggan/action/{i}.png')
-                                           .convert_alpha() for i in range(5)])
+                                           .convert_alpha() for i in range(5)]),
+                'name': 'spriggan'
             },
             'npc_bear': {
                 'sprite': [pygame.image.load(f'sprites/npc/bear/base/{i}.png').convert_alpha() for i in range(8)],
@@ -134,7 +140,8 @@ class Sprites:
                 'blocked': True,  # <-------------------
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/bear/action/{i}.png')
-                                    .convert_alpha() for i in range(4)])
+                                    .convert_alpha() for i in range(4)]),
+                'name': 'bear'
             },
             'sprite_door_v': {
                 'sprite': [pygame.image.load(f'sprites/doors/door_v/{i}.png').convert_alpha() for i in range(16)],
@@ -150,7 +157,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'door_h',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'door_v'
             },
             'sprite_door_h': {
                 'sprite': [pygame.image.load(f'sprites/doors/door_h/{i}.png').convert_alpha() for i in range(16)],
@@ -166,7 +174,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'door_v',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'door_h'
             },
 
             'npc_peaceful': {
@@ -185,7 +194,8 @@ class Sprites:
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'decor',
-                'obj_action': []
+                'obj_action': [],
+                'name': 'peaceful'
             },
             'npc_boss': {
                 'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
@@ -203,13 +213,15 @@ class Sprites:
                 'blocked': True,  # <-------------------
                 'flag': 'npc',
                 'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
-                                    .convert_alpha() for i in range(6)])
+                                    .convert_alpha() for i in range(6)]),
+                'name': 'boss'
             },
         }
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['npc_peaceful'], (9.5, 10.5)),
             SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
             SpriteObject(self.sprite_parameters['npc_boss'], (7, 12)),
+            SpriteObject(self.sprite_parameters['npc_tiger'], (27, 18)),
         ]
 
 
@@ -252,6 +264,7 @@ class SpriteObject:
         self.door_open_trigger = False
         self.door_prev_pos = self.y if self.flag == 'door_h' else self.x
         self.delete = False
+        self.name = parameters["name"]
         if self.viewing_angles:
             if len(self.object) == 8:
                 self.sprite_angles = [frozenset(range(338, 361)) | frozenset(range(0, 23))] + \
