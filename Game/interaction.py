@@ -43,6 +43,13 @@ class Interaction:
         self.drawing = drawing
         self.pain_sound = pygame.mixer.Sound('sound/pain.wav')
         self.font = pygame.font.SysFont('Arial', 36, bold=True)
+        self.need_to_check = True
+
+    def check_is_dialog_was_play(self):
+        if self.need_to_check:
+            if os.path.isfile('data.txt'):
+                self.need_to_check = False
+                print("Да!")  # тут необходимо удалить или обновить блок прохода
 
     def interaction_objects(self):
         if self.player.shot and self.drawing.shot_animation_trigger:
@@ -118,7 +125,6 @@ class Interaction:
                     if event.type == pygame.QUIT:
                         exit()
                 self.drawing.loss()
-
 
     def play_music(self):
         pygame.mixer.pre_init(44100, -16, 2, 2048)

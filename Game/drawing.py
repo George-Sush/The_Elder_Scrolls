@@ -12,6 +12,7 @@ import sys
 class Drawing:
     def __init__(self, sc, sc_map, player, clock):
         self.sc = sc
+        self.is_dialog_opened = False
         self.sc_map = sc_map
         self.player = player
         self.clock = clock
@@ -92,6 +93,9 @@ class Drawing:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_e] and abs(953 - self.player.x) <= 90 and abs(1011 - self.player.y) <= 90:
             self.sc.blit(self.dialog_0, self.weapon_pos)
+            if not self.is_dialog_opened:
+                self.is_dialog_opened = True
+                open("data.txt", "w")
 
     def mini_map(self):
         self.sc_map.fill(BLACK)
@@ -182,7 +186,3 @@ class Drawing:
 
             pygame.display.flip()
             self.clock.tick(20)
-
-
-
-

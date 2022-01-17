@@ -186,10 +186,10 @@ class Sprites:
                 'side': 30,
                 'animation': deque(
                     [pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
-                'death_animation': deque([pygame.image.load(f'sprites/npc/peaceful/death/{i}.png')
-                                          .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 2.6,
+                'death_animation': [],
+                # deque([pygame.image.load(f'sprites/npc/peaceful/death/{i}.png').convert_alpha() for i in range(2)]),
+                'is_dead': 'immortal',
+                'dead_shift': None,
                 'animation_dist': 90,
                 'animation_speed': 1,
                 'blocked': True,

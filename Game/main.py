@@ -1,4 +1,5 @@
 from player import Player
+import os
 import pygame
 from sprite_objects import Sprites
 from ray_casting import ray_casting_walls
@@ -8,6 +9,8 @@ from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CE
     TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_WIDTH, HALF_HEIGHT, WIDTH, HEIGHT, MAP_RES
 
 
+if os.path.isfile('data.txt'):
+    os.remove('data.txt')
 pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT), pygame.DOUBLEBUF)
 clock = pygame.time.Clock()
@@ -39,6 +42,7 @@ while True:
     interaction.interaction_objects()
     interaction.npc_action()
     interaction.clear_world()
+    interaction.check_is_dialog_was_play()
     interaction.check_loss()
     interaction.check_win()
 
