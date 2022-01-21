@@ -49,7 +49,7 @@ class Interaction:
         if self.need_to_check:
             if os.path.isfile('data.txt'):
                 self.need_to_check = False
-                print("Блок прохода открыт!")  # тут необходимо удалить или обновить блок прохода
+
 
     def interaction_objects(self):
         if self.player.shot and self.drawing.shot_animation_trigger:

@@ -32,12 +32,12 @@ class Sprites:
                 'name': 'barrel'
             },
             'sprite_pin': {
-                'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
+                'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
                 'viewing_angles': None,
-                'shift': 0.6,
-                'scale': (10, 10),
-                'side': 30,
-                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.gif').convert_alpha() for i in range(1)]),
+                'shift': 0.3,
+                'scale': (1.5, 1),
+                'side': 7,
+                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.png').convert_alpha() for i in range(1)]),
                 'death_animation': [],
                 'is_dead': 'immortal',
                 'dead_shift': None,
@@ -222,6 +222,7 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
             SpriteObject(self.sprite_parameters['npc_boss'], (7, 12)),
             SpriteObject(self.sprite_parameters['npc_tiger'], (27, 18)),
+            SpriteObject(self.sprite_parameters['sprite_pin'], (18.5, 14.5))
         ]
 
 
