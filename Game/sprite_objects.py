@@ -1,4 +1,5 @@
 import pygame
+import os
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
     TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, FAKE_RAYS, FAKE_RAYS_RANGE, \
     DOUBLE_HEIGHT, DOUBLE_PI, HP, NEED_TO_GO
@@ -32,12 +33,12 @@ class Sprites:
                 'name': 'barrel'
             },
             'sprite_pin': {
-                'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
+                'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
                 'viewing_angles': None,
-                'shift': 0.6,
-                'scale': (10, 10),
-                'side': 30,
-                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.gif').convert_alpha() for i in range(1)]),
+                'shift': 0.3,
+                'scale': (1.4, 0.9),
+                'side': 10,
+                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.png').convert_alpha() for i in range(1)]),
                 'death_animation': [],
                 'is_dead': 'immortal',
                 'dead_shift': None,
@@ -358,8 +359,6 @@ class SpriteObject:
         if self.distance_to_sprite <= 100:
             HP[0] = int(HP[0]) - 1
 
-
-
     def visible_sprite(self):
         if self.viewing_angles:
             if self.theta < 0:
@@ -401,4 +400,3 @@ class SpriteObject:
             self.x -= 3
             if abs(self.x - self.door_prev_pos) > TILE:
                 self.delete = True
-
