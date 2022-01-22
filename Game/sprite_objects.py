@@ -358,6 +358,8 @@ class SpriteObject:
         self.distance_to_sprite = math.sqrt(dx ** 2 + dy ** 2)
         if self.distance_to_sprite <= 100:
             HP[0] = int(HP[0]) - 1
+            if self.name == 'boss':
+                HP[0] = int(HP[0]) - 1
 
     def visible_sprite(self):
         if self.viewing_angles:
