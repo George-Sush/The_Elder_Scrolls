@@ -1,7 +1,7 @@
 import pygame
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
     TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, FAKE_RAYS, FAKE_RAYS_RANGE, \
-    DOUBLE_HEIGHT, DOUBLE_PI, HP
+    DOUBLE_HEIGHT, DOUBLE_PI, HP, NEED_TO_GO
 from collections import deque
 from ray_casting import mapping
 from numba.core import types
@@ -32,12 +32,12 @@ class Sprites:
                 'name': 'barrel'
             },
             'sprite_pin': {
-                'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
+                'sprite': pygame.image.load('sprites/pin/base/0.gif').convert_alpha(),
                 'viewing_angles': None,
-                'shift': 0.3,
-                'scale': (1.5, 1),
-                'side': 7,
-                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.png').convert_alpha() for i in range(1)]),
+                'shift': 0.6,
+                'scale': (10, 10),
+                'side': 30,
+                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.gif').convert_alpha() for i in range(1)]),
                 'death_animation': [],
                 'is_dead': 'immortal',
                 'dead_shift': None,
@@ -222,7 +222,7 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
             SpriteObject(self.sprite_parameters['npc_boss'], (7, 12)),
             SpriteObject(self.sprite_parameters['npc_tiger'], (27, 18)),
-            SpriteObject(self.sprite_parameters['sprite_pin'], (18.5, 14.5))
+            SpriteObject(self.sprite_parameters["sprite_pin"], (18.5, 14.5))
         ]
 
 
@@ -275,7 +275,6 @@ class SpriteObject:
                                      [frozenset(range(i, i + 23)) for i in range(11, 348, 23)]
             self.sprite_positions = {angle: pos for angle, pos in zip(self.sprite_angles, self.object)}
 
-
     @property
     def is_on_fire(self):
         if CENTER_RAY - self.side // 2 < self.current_ray < CENTER_RAY + self.side // 2 and self.blocked:
@@ -284,6 +283,10 @@ class SpriteObject:
 
     @property
     def pos(self):
+        if self.name == "pin" and NEED_TO_GO[0]:
+            NEED_TO_GO[0] = False
+            self.delete = True
+
         return self.x - self.side // 2, self.y - self.side // 2
 
     def object_locate(self, player):

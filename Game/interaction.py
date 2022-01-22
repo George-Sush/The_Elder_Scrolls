@@ -1,6 +1,6 @@
 import os
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP, NEED_TO_GO
 from map import world_map
 from ray_casting import mapping
 import math
@@ -38,6 +38,7 @@ def ray_casting_npc_player(npc_x, npc_y, blocked_doors, world_map, player_pos):
 
 class Interaction:
     def __init__(self, player, sprites, drawing):
+        self.need_to_delite = False
         self.player = player
         self.sprites = sprites
         self.drawing = drawing
@@ -49,7 +50,7 @@ class Interaction:
         if self.need_to_check:
             if os.path.isfile('data.txt'):
                 self.need_to_check = False
-
+                self.need_to_delite = True
 
     def interaction_objects(self):
         if self.player.shot and self.drawing.shot_animation_trigger:
@@ -93,6 +94,9 @@ class Interaction:
         [self.sprites.list_of_objects.remove(obj) for obj in deleted_objects if obj.delete]
 
     def check_win(self):
+        if len([obj for obj in self.sprites.list_of_objects if obj.name == 'pin']) and self.need_to_delite:
+            self.need_to_delite = False
+            NEED_TO_GO[0] = True
         if not len([obj for obj in self.sprites.list_of_objects if obj.name == 'boss' and not obj.is_dead]):
             pygame.mixer.music.stop()
             pygame.mixer.music.load('sound/win.mp3')
