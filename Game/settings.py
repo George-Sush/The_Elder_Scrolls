@@ -12,6 +12,7 @@ FPS = 60
 TILE = 100
 FPS_POS = (WIDTH - 170, 10)
 HP = [100]
+NEED_TO_GO = [False]
 
 # minimap settings
 MINIMAP_SCALE = 4
