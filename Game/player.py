@@ -1,4 +1,5 @@
 from map import collision_walls
+import settings
 from settings import DOUBLE_PI, HALF_WIDTH, HALF_HEIGHT, player_pos, player_angle, player_speed
 import pygame
 import math
@@ -24,6 +25,9 @@ class Player:
                                   in self.sprites.list_of_objects if obj.blocked]
 
     def movement(self):
+        # print(settings.HP[0], "этот")
+        if settings.HP[0] < 100:
+            settings.HP[0] += settings.DELTA_MS * 1 / 1000
         self.keys_control()
         self.mouse_control()
         self.rect.center = self.x, self.y
