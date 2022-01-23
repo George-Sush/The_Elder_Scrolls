@@ -25,7 +25,6 @@ class Player:
                                   in self.sprites.list_of_objects if obj.blocked]
 
     def movement(self):
-        # print(settings.HP[0], "этот")
         if settings.HP[0] < 100:
             settings.HP[0] += settings.DELTA_MS * 1 / 1000
         self.keys_control()
