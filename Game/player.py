@@ -26,7 +26,7 @@ class Player:
 
     def movement(self):
         if settings.HP[0] < 100:
-            settings.HP[0] += settings.DELTA_MS * 1 / 1000
+            settings.HP[0] += settings.DELTA_MS * 2 / 1000
         self.keys_control()
         self.mouse_control()
         self.rect.center = self.x, self.y
