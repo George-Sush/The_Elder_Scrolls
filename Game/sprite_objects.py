@@ -219,7 +219,7 @@ class Sprites:
             },
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 29.5)),
+            SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 30.5)),
             SpriteObject(self.sprite_parameters['npc_boss'], (46.5, 2)),
             SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 3)),
             SpriteObject(self.sprite_parameters["sprite_pin"], (44.5, 5.5)),
