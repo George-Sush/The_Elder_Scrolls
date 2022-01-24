@@ -219,11 +219,15 @@ class Sprites:
             },
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['npc_peaceful'], (9.5, 10.5)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (27, 12)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (7, 12)),
-            SpriteObject(self.sprite_parameters['npc_tiger'], (27, 18)),
-            SpriteObject(self.sprite_parameters["sprite_pin"], (18.5, 14.5))
+            SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 29.5)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (46.5, 2)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 3)),
+            SpriteObject(self.sprite_parameters["sprite_pin"], (44.5, 5.5)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (22.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (29.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (31.5, 2)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (34.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (43.5, 11)),
         ]
 
 

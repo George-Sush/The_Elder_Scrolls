@@ -23,6 +23,9 @@ class Drawing:
                          3: pygame.image.load('img/wall4.png').convert(),
                          4: pygame.image.load('img/wall7.png').convert(),
                          5: pygame.image.load('img/wall8.png').convert(),
+                         6: pygame.image.load('img/rrock12.png').convert(),
+                         7: pygame.image.load('img/wall9.png').convert(),
+                         8: pygame.image.load('img/wall10.png').convert(),
                          'S': pygame.image.load('img/sky01.png').convert(),
                          'F': pygame.image.load('img/floor0.png').convert(),
                          }
