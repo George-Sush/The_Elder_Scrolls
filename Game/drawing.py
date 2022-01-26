@@ -94,7 +94,8 @@ class Drawing:
 
     def dialog(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_e] and abs(953 - self.player.x) <= 90 and abs(1011 - self.player.y) <= 90:
+        # print(self.player.x, self.player.y) # если переставлен мирный нпс, то подойдите к ниму и сметите координаты
+        if keys[pygame.K_e] and abs(858 - self.player.x) <= 90 and abs(2911 - self.player.y) <= 90:
             self.sc.blit(self.dialog_0, self.weapon_pos)
             if not self.is_dialog_opened:
                 self.is_dialog_opened = True
