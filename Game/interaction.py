@@ -1,7 +1,8 @@
 import os
 import settings
+from sprite_objects import Sprites
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP, NEED_TO_GO
+    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP, NEED_TO_GO, END_BOSS
 from map import world_map
 from ray_casting import mapping
 import math
@@ -98,11 +99,17 @@ class Interaction:
         if len([obj for obj in self.sprites.list_of_objects if obj.name == 'pin']) and self.need_to_delite:
             self.need_to_delite = False
             NEED_TO_GO[0] = True
-        if not len([obj for obj in self.sprites.list_of_objects if obj.name == 'boss' and not obj.is_dead]):
-            pygame.mixer.music.stop()
-            pygame.mixer.music.load('sound/win.mp3')
-            pygame.mixer.music.play()
-            settings.STATUS = settings.STATUS_WIN
+        if not len([obj for obj in self.sprites.list_of_objects if obj.name == 'boss' and not obj.is_dead or obj.name == "end_boss"]):
+            if END_BOSS[0]:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load('sound/win.mp3')
+                pygame.mixer.music.play()
+                settings.STATUS = settings.STATUS_WIN
+                return False
+            elif not END_BOSS[0]:
+                END_BOSS[0] = True
+                return True
+        return False
 
     def check_loss(self):
         if int(HP[0]) <= 0:

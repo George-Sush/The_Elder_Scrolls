@@ -109,9 +109,9 @@ class Sprites:
             'npc_spriggan': {
                 'sprite': [pygame.image.load(f'sprites/npc/spriggan/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
-                'shift': 0.8,
-                'scale': (0.4, 0.6),
-                'side': 30,
+                'shift': 0.1,
+                'scale': (0.4, 1),
+                'side': 60,
                 'animation': [],
                 'death_animation': deque([pygame.image.load(f'sprites/npc/spriggan/death/{i}.png')
                                            .convert_alpha() for i in range(2)]),
@@ -202,7 +202,7 @@ class Sprites:
                 'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
                 'shift': 0.1,
-                'scale': (1.2, 1.2),
+                'scale': (1.2, 1.6),
                 'side': 50,
                 'animation': [],
                 'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
@@ -216,18 +216,48 @@ class Sprites:
                 'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
                                     .convert_alpha() for i in range(6)]),
                 'name': 'boss'
+
+
+            },
+            'npc_end_boss': {
+                'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
+                'viewing_angles': True,
+                'shift': 0.1,
+                'scale': (1.2, 1.6),
+                'side': 50,
+                'animation': [],
+                'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
+                                         .convert_alpha() for i in range(2)]),
+                'is_dead': None,
+                'dead_shift': 1.7,
+                'animation_dist': None,
+                'animation_speed': 10,
+                'blocked': True,  # <-------------------
+                'flag': 'npc',
+                'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
+                                    .convert_alpha() for i in range(6)]),
+                'name': 'end_boss'
+
             },
         }
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 30.5)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (46.5, 2)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 3)),
-            SpriteObject(self.sprite_parameters["sprite_pin"], (44.5, 5.5)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (22.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (29.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (31.5, 2)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (34.5, 11)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (43.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (41.5, 2)),
+            SpriteObject(self.sprite_parameters["sprite_pin"], (39.5, 5.5)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (17.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (24.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (26.5, 2)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (29.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (38.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 24)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 21)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 19)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 16)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 13)),
+            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 10)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (29, 25)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (29, 30)),
+            SpriteObject(self.sprite_parameters['npc_boss'], (29, 28)),
         ]
 
 
@@ -243,6 +273,9 @@ class Sprites:
                 i, j = mapping(obj.x, obj.y)
                 blocked_doors[(i, j)] = 0
         return blocked_doors
+
+    def END(self):
+        self.list_of_objects.append(SpriteObject(self.sprite_parameters['npc_end_boss'], (3, 3)),)
 
 
 class SpriteObject:

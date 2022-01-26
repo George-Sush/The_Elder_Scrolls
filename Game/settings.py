@@ -18,6 +18,7 @@ STATUS_WIN = 1
 STATUS_LOSE = 2
 STATUS_PLAY = 0
 STATUS = STATUS_PLAY
+END_BOSS = [False]
 
 
 # minimap settings

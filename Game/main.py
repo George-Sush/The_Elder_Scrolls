@@ -46,7 +46,8 @@ while True:
         interaction.check_is_dialog_was_play()
 
         interaction.check_loss()
-        interaction.check_win()
+        if interaction.check_win():
+            sprites.END()
 
         pygame.display.flip()
         settings.DELTA_MS = clock.tick()
