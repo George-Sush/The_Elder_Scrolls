@@ -99,8 +99,8 @@ class Interaction:
         if len([obj for obj in self.sprites.list_of_objects if obj.name == 'pin']) and self.need_to_delite:
             self.need_to_delite = False
             NEED_TO_GO[0] = True
-        if not len([obj for obj in self.sprites.list_of_objects if obj.name == 'boss' and not obj.is_dead or obj.name == "end_boss"]):
-            if END_BOSS[0]:
+        if not len([obj for obj in self.sprites.list_of_objects if (obj.name == 'boss' and not obj.is_dead) or (obj.name == "end_boss" and not obj.is_dead)]):
+            if END_BOSS[0] and self.sprites.list_of_objects[-1].name == "end_boss" and self.sprites.list_of_objects[-1].is_dead:
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load('sound/win.mp3')
                 pygame.mixer.music.play()

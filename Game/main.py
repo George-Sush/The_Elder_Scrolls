@@ -61,6 +61,8 @@ while True:
                 os.remove('data.txt')
             settings.STATUS = settings.STATUS_PLAY
             settings.HP[0] = 100
+            settings.NEED_TO_GO[0] = False
+            settings.END_BOSS[0] = False
 
             # sc_map = pygame.Surface(MAP_RES)
             sprites = Sprites()
@@ -85,6 +87,8 @@ while True:
                 os.remove('data.txt')
             settings.STATUS = settings.STATUS_PLAY
             settings.HP[0] = 100
+            settings.NEED_TO_GO[0] = False
+            settings.END_BOSS[0] = False
 
             # sc_map = pygame.Surface(MAP_RES)
             sprites = Sprites()
