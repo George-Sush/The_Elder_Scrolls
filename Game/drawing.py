@@ -1,5 +1,6 @@
 import pygame
 import math
+import computer_settings
 from settings import HP, HALF_WIDTH, WIDTH, DARKORANGE, BLACK, MAP_TILE,\
     DARKBROWN, HALF_HEIGHT, FPS_POS, RED, MAP_SCALE, YELLOW, MAP_POS
 from map import mini_map
@@ -158,6 +159,7 @@ class Drawing:
         while self.menu_trigger:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    computer_settings.unhide_taskbar()
                     pygame.quit()
                     sys.exit()
 
@@ -185,6 +187,7 @@ class Drawing:
                 pygame.draw.rect(self.sc, BLACK, button_exit, border_radius=25)
                 self.sc.blit(exit, (button_exit.centerx - 85, button_exit.centery - 70))
                 if mouse_click[0]:
+                    computer_settings.unhide_taskbar()
                     pygame.quit()
                     sys.exit()
 

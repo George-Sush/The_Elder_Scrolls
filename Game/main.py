@@ -58,7 +58,6 @@ while True:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             computer_settings.unhide_taskbar()
-            print("да")
             exit()
         if keys[pygame.K_SPACE]:
             if os.path.isfile('data.txt'):
@@ -80,7 +79,6 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 computer_settings.unhide_taskbar()
-                print("да")
                 exit()
         drawing.loss()
     elif settings.STATUS == settings.STATUS_WIN:
@@ -88,7 +86,6 @@ while True:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             computer_settings.unhide_taskbar()
-            print("да")
             exit()
         if keys[pygame.K_SPACE]:
             if os.path.isfile('data.txt'):
@@ -111,6 +108,5 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 computer_settings.unhide_taskbar()
-                print("да")
                 exit()
         drawing.win()
