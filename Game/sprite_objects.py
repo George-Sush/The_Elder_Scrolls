@@ -16,21 +16,21 @@ class Sprites:
             'sprite_barrel': {
                 'sprite': pygame.image.load('sprites/barrel/base/0.png').convert_alpha(),
                 'viewing_angles': None,
-                'shift': 1.8,
-                'scale': (0.4, 0.4),
+                'shift': 0,
+                'scale': (2, 2),
                 'side': 30,
                 'animation': deque(
-                    [pygame.image.load(f'sprites/barrel/anim/{i}.png').convert_alpha() for i in range(12)]),
+                    [pygame.image.load(f'sprites/barrel/anim/{i}.png').convert_alpha() for i in range(17)]),
                 'death_animation': deque([pygame.image.load(f'sprites/barrel/death/{i}.png')
-                                          .convert_alpha() for i in range(4)]),
+                                          .convert_alpha() for i in range(1)]),
                 'is_dead': None,
-                'dead_shift': 2.6,
-                'animation_dist': 800,
+                'dead_shift': 0,
+                'animation_dist': 100000,
                 'animation_speed': 1,
                 'blocked': True,
                 'flag': 'decor',
                 'obj_action': [],
-                'name': 'barrel'
+                'name': 'boss'
             },
             'sprite_pin': {
                 'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
@@ -97,7 +97,7 @@ class Sprites:
                 'death_animation': deque([pygame.image.load(f'sprites/npc/tiger/death/{i}.png')
                                            .convert_alpha() for i in range(2)]),
                 'is_dead': None,
-                'dead_shift': 0.5,
+                'dead_shift': 0.8,
                 'animation_dist': None,
                 'animation_speed': 5,
                 'blocked': True,  # <-------------------
@@ -128,14 +128,14 @@ class Sprites:
             'npc_bear': {
                 'sprite': [pygame.image.load(f'sprites/npc/bear/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
-                'shift': 0.8,
-                'scale': (0.4, 0.6),
+                'shift': 0,
+                'scale': (1, 1),
                 'side': 30,
                 'animation': [],
                 'death_animation': deque([pygame.image.load(f'sprites/npc/bear/death/{i}.png')
                                            .convert_alpha() for i in range(2)]),
                 'is_dead': None,
-                'dead_shift': 1.7,
+                'dead_shift': 0.8,
                 'animation_dist': None,
                 'animation_speed': 30,
                 'blocked': True,  # <-------------------
@@ -188,7 +188,6 @@ class Sprites:
                 'animation': deque(
                     [pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
                 'death_animation': [],
-                # deque([pygame.image.load(f'sprites/npc/peaceful/death/{i}.png').convert_alpha() for i in range(2)]),
                 'is_dead': 'immortal',
                 'dead_shift': None,
                 'animation_dist': 90,
@@ -201,14 +200,14 @@ class Sprites:
             'npc_boss': {
                 'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
-                'shift': 0.1,
+                'shift': 0,
                 'scale': (1.2, 1.6),
                 'side': 50,
                 'animation': [],
                 'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
                                          .convert_alpha() for i in range(2)]),
                 'is_dead': None,
-                'dead_shift': 1.7,
+                'dead_shift': 0.8,
                 'animation_dist': None,
                 'animation_speed': 10,
                 'blocked': True,  # <-------------------
@@ -239,6 +238,7 @@ class Sprites:
             SpriteObject(self.sprite_parameters['npc_boss'], (29, 25)),
             SpriteObject(self.sprite_parameters['npc_boss'], (29, 30)),
             SpriteObject(self.sprite_parameters['npc_boss'], (29, 28)),
+            SpriteObject(self.sprite_parameters['sprite_barrel'], (28, 28)),
         ]
 
 
