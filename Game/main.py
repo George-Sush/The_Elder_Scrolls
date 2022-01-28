@@ -5,6 +5,7 @@ from sprite_objects import Sprites
 from ray_casting import ray_casting_walls
 from drawing import Drawing
 import settings
+import computer_settings
 from interaction import Interaction
 from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
     TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_WIDTH, HALF_HEIGHT, WIDTH, HEIGHT, MAP_RES
@@ -12,6 +13,7 @@ from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CE
 
 if os.path.isfile('data.txt'):
     os.remove('data.txt')
+computer_settings.hide_taskbar()
 pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT), pygame.DOUBLEBUF)
 clock = pygame.time.Clock()
@@ -55,6 +57,8 @@ while True:
         pygame.mouse.set_visible(True)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
+            computer_settings.unhide_taskbar()
+            print("да")
             exit()
         if keys[pygame.K_SPACE]:
             if os.path.isfile('data.txt'):
@@ -75,12 +79,16 @@ while True:
             interaction.play_music()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                computer_settings.unhide_taskbar()
+                print("да")
                 exit()
         drawing.loss()
     elif settings.STATUS == settings.STATUS_WIN:
         pygame.mouse.set_visible(True)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
+            computer_settings.unhide_taskbar()
+            print("да")
             exit()
         if keys[pygame.K_SPACE]:
             if os.path.isfile('data.txt'):
@@ -102,5 +110,7 @@ while True:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                computer_settings.unhide_taskbar()
+                print("да")
                 exit()
         drawing.win()

@@ -2,6 +2,7 @@ from map import collision_walls
 import settings
 from settings import DOUBLE_PI, HALF_WIDTH, HALF_HEIGHT, player_pos, player_angle, player_speed
 import pygame
+import computer_settings
 import math
 
 
@@ -50,7 +51,7 @@ class Player:
                 else:
                     delta_y += hit_rect.bottom - next_rect.top
 
-            if abs(delta_x - delta_y) < 20: # <-------------
+            if abs(delta_x - delta_y) < 20:  # <-------------
                 dx, dy = 0, 0
             elif delta_x > delta_y:
                 dy = 0
@@ -65,6 +66,7 @@ class Player:
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
+            computer_settings.unhide_taskbar()
             exit()
         if keys[pygame.K_LSHIFT]:
              player_speed = 10
@@ -90,6 +92,7 @@ class Player:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                computer_settings.unhide_taskbar()
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and not self.shot:
