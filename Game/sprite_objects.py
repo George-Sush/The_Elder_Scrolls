@@ -68,7 +68,7 @@ class Sprites:
                 'name': 'flame'
             },
 
-            'npc_devil0': {
+            'npc_end_boss': {
                 'sprite': [pygame.image.load(f'sprites/npc/devil0/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
                 'shift': 0.0,
@@ -85,7 +85,7 @@ class Sprites:
                 'flag': 'npc',
                 'obj_action': deque(
                     [pygame.image.load(f'sprites/npc/devil0/anim/{i}.png').convert_alpha() for i in range(9)]),
-                'name': 'devil0'
+                'name': 'end_boss'
             },
             'npc_tiger': {
                 'sprite': [pygame.image.load(f'sprites/npc/tiger/base/{i}.png').convert_alpha() for i in range(8)],
@@ -219,36 +219,17 @@ class Sprites:
 
 
             },
-            'npc_end_boss': {
-                'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0.1,
-                'scale': (1.2, 1.6),
-                'side': 50,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
-                                         .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 1.7,
-                'animation_dist': None,
-                'animation_speed': 10,
-                'blocked': True,  # <-------------------
-                'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
-                                    .convert_alpha() for i in range(6)]),
-                'name': 'end_boss'
 
-            },
         }
         self.list_of_objects = [
             SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 30.5)),
             SpriteObject(self.sprite_parameters['npc_boss'], (41.5, 2)),
             SpriteObject(self.sprite_parameters["sprite_pin"], (39.5, 5.5)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (17.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (24.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (26.5, 2)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (29.5, 11)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (38.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_tiger'], (17.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_bear'], (24.5, 1)),
+            SpriteObject(self.sprite_parameters['npc_tiger'], (26.5, 2)),
+            SpriteObject(self.sprite_parameters['npc_bear'], (29.5, 11)),
+            SpriteObject(self.sprite_parameters['npc_tiger'], (38.5, 11)),
             SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 24)),
             SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 21)),
             SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 19)),
@@ -275,7 +256,7 @@ class Sprites:
         return blocked_doors
 
     def END(self):
-        self.list_of_objects.append(SpriteObject(self.sprite_parameters['npc_end_boss'], (3, 3)),)
+        self.list_of_objects.append(SpriteObject(self.sprite_parameters['npc_end_boss'], (7, 29)),)
 
 
 class SpriteObject:
@@ -397,6 +378,8 @@ class SpriteObject:
             HP[0] = int(HP[0]) - 0.5
             if self.name == 'boss':
                 HP[0] = int(HP[0]) - 1
+            elif self.name == 'end_boss':
+                HP[0] = int(HP[0]) - 2
 
     def visible_sprite(self):
         if self.viewing_angles:
