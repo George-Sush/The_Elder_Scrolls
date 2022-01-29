@@ -1,8 +1,24 @@
 import os
 import settings
 from sprite_objects import Sprites
-from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, HP, NEED_TO_GO, END_BOSS
+from settings import (
+    TILE,
+    HALF_FOV,
+    NUM_RAYS,
+    math,
+    PROJ_COEFF,
+    DELTA_ANGLE,
+    CENTER_RAY,
+    HEIGHT,
+    TEXTURE_SCALE,
+    SCALE,
+    TEXTURE_HEIGHT,
+    HALF_TEXTURE_HEIGHT,
+    HALF_HEIGHT,
+    HP,
+    NEED_TO_GO,
+    END_BOSS,
+)
 from map import world_map
 from ray_casting import mapping
 import math
@@ -44,41 +60,49 @@ class Interaction:
         self.player = player
         self.sprites = sprites
         self.drawing = drawing
-        self.pain_sound = pygame.mixer.Sound('sound/pain.wav')
-        self.font = pygame.font.SysFont('Arial', 36, bold=True)
+        self.pain_sound = pygame.mixer.Sound("sound/pain.wav")
+        self.font = pygame.font.SysFont("Arial", 36, bold=True)
         self.need_to_check = True
 
     def check_is_dialog_was_play(self):
         if self.need_to_check:
-            if os.path.isfile('data.txt'):
+            if os.path.isfile("data.txt"):
                 self.need_to_check = False
                 self.need_to_delite = True
 
     def interaction_objects(self):
         if self.player.shot and self.drawing.shot_animation_trigger:
-            for obj in sorted(self.sprites.list_of_objects, key=lambda obj: obj.distance_to_sprite):
+            for obj in sorted(
+                self.sprites.list_of_objects, key=lambda obj: obj.distance_to_sprite
+            ):
                 if obj.is_on_fire[1]:
-                    if obj.is_dead != 'immortal' and not obj.is_dead:
+                    if obj.is_dead != "immortal" and not obj.is_dead:
                         if obj.distance_to_sprite < TILE:
-                            if ray_casting_npc_player(obj.x, obj.y,
-                                                      self.sprites.blocked_doors,
-                                                      world_map, self.player.pos):
-                                if obj.flag == 'npc':
+                            if ray_casting_npc_player(
+                                obj.x,
+                                obj.y,
+                                self.sprites.blocked_doors,
+                                world_map,
+                                self.player.pos,
+                            ):
+                                if obj.flag == "npc":
                                     self.pain_sound.play()
                                 obj.is_dead = True
                                 obj.blocked = None
                                 self.drawing.shot_animation_trigger = False
-                    if (obj.flag == 'door_h' or obj.flag == 'door_v') and obj.distance_to_sprite < TILE:
+                    if (
+                        obj.flag == "door_h" or obj.flag == "door_v"
+                    ) and obj.distance_to_sprite < TILE:
                         obj.door_open_trigger = True
                         obj.blocked = None
                     break
 
     def npc_action(self):
         for obj in self.sprites.list_of_objects:
-            if obj.flag == 'npc' and not obj.is_dead:
-                if ray_casting_npc_player(obj.x, obj.y,
-                                          self.sprites.blocked_doors,
-                                          world_map, self.player.pos):
+            if obj.flag == "npc" and not obj.is_dead:
+                if ray_casting_npc_player(
+                    obj.x, obj.y, self.sprites.blocked_doors, world_map, self.player.pos
+                ):
                     obj.npc_action_trigger = True
                     self.npc_move(obj)
                 else:
@@ -93,16 +117,34 @@ class Interaction:
 
     def clear_world(self):
         deleted_objects = self.sprites.list_of_objects[:]
-        [self.sprites.list_of_objects.remove(obj) for obj in deleted_objects if obj.delete]
+        [
+            self.sprites.list_of_objects.remove(obj)
+            for obj in deleted_objects
+            if obj.delete
+        ]
 
     def check_win(self):
-        if len([obj for obj in self.sprites.list_of_objects if obj.name == 'pin']) and self.need_to_delite:
+        if (
+            len([obj for obj in self.sprites.list_of_objects if obj.name == "pin"])
+            and self.need_to_delite
+        ):
             self.need_to_delite = False
             NEED_TO_GO[0] = True
-        if not len([obj for obj in self.sprites.list_of_objects if (obj.name == 'boss' and not obj.is_dead) or (obj.name == "end_boss" and not obj.is_dead)]):
-            if END_BOSS[0] and self.sprites.list_of_objects[-1].name == "end_boss" and self.sprites.list_of_objects[-1].is_dead:
+        if not len(
+            [
+                obj
+                for obj in self.sprites.list_of_objects
+                if (obj.name == "boss" and not obj.is_dead)
+                or (obj.name == "end_boss" and not obj.is_dead)
+            ]
+        ):
+            if (
+                END_BOSS[0]
+                and self.sprites.list_of_objects[-1].name == "end_boss"
+                and self.sprites.list_of_objects[-1].is_dead
+            ):
                 pygame.mixer.music.stop()
-                pygame.mixer.music.load('sound/win.mp3')
+                pygame.mixer.music.load("sound/win.mp3")
                 pygame.mixer.music.play()
                 settings.STATUS = settings.STATUS_WIN
                 return False
@@ -114,12 +156,12 @@ class Interaction:
     def check_loss(self):
         if int(HP[0]) <= 0:
             pygame.mixer.music.stop()
-            pygame.mixer.music.load('sound/win.mp3')
+            pygame.mixer.music.load("sound/win.mp3")
             pygame.mixer.music.play()
             settings.STATUS = settings.STATUS_LOSE
 
     def play_music(self):
         pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.mixer.init()
-        pygame.mixer.music.load('sound/theme.mp3')
+        pygame.mixer.music.load("sound/theme.mp3")
         pygame.mixer.music.play(10)

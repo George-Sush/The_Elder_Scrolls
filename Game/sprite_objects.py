@@ -1,8 +1,26 @@
 import pygame
 import os
-from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_TEXTURE_HEIGHT, HALF_HEIGHT, FAKE_RAYS, FAKE_RAYS_RANGE, \
-    DOUBLE_HEIGHT, DOUBLE_PI, HP, NEED_TO_GO
+from settings import (
+    TILE,
+    HALF_FOV,
+    NUM_RAYS,
+    math,
+    PROJ_COEFF,
+    DELTA_ANGLE,
+    CENTER_RAY,
+    HEIGHT,
+    TEXTURE_SCALE,
+    SCALE,
+    TEXTURE_HEIGHT,
+    HALF_TEXTURE_HEIGHT,
+    HALF_HEIGHT,
+    FAKE_RAYS,
+    FAKE_RAYS_RANGE,
+    DOUBLE_HEIGHT,
+    DOUBLE_PI,
+    HP,
+    NEED_TO_GO,
+)
 from collections import deque
 from ray_casting import mapping
 from numba.core import types
@@ -13,292 +31,413 @@ from numba import int32
 class Sprites:
     def __init__(self):
         self.sprite_parameters = {
-            'sprite_barrel': {
-                'sprite': pygame.image.load('sprites/barrel/base/0.png').convert_alpha(),
-                'viewing_angles': None,
-                'shift': 0,
-                'scale': (2, 2),
-                'side': 30,
-                'animation': deque(
-                    [pygame.image.load(f'sprites/barrel/anim/{i}.png').convert_alpha() for i in range(17)]),
-                'death_animation': deque([pygame.image.load(f'sprites/barrel/death/{i}.png')
-                                          .convert_alpha() for i in range(1)]),
-                'is_dead': None,
-                'dead_shift': 0,
-                'animation_dist': 100000,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'decor',
-                'obj_action': [],
-                'name': 'boss'
+            "sprite_barrel": {
+                "sprite": pygame.image.load(
+                    "sprites/barrel/base/0.png"
+                ).convert_alpha(),
+                "viewing_angles": None,
+                "shift": 0,
+                "scale": (2, 2),
+                "side": 30,
+                "animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/barrel/anim/{i}.png"
+                        ).convert_alpha()
+                        for i in range(17)
+                    ]
+                ),
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/barrel/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(1)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 0,
+                "animation_dist": 100000,
+                "animation_speed": 1,
+                "blocked": True,
+                "flag": "decor",
+                "obj_action": [],
+                "name": "boss",
             },
-            'sprite_pin': {
-                'sprite': pygame.image.load('sprites/pin/base/0.png').convert_alpha(),
-                'viewing_angles': None,
-                'shift': 0.3,
-                'scale': (1.4, 0.9),
-                'side': 10,
-                'animation': deque([pygame.image.load(f'sprites/pin/anim/{i}.png').convert_alpha() for i in range(1)]),
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': None,
-                'animation_dist': 800,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'decor',
-                'obj_action': [],
-                'name': 'pin'
+            "sprite_pin": {
+                "sprite": pygame.image.load("sprites/pin/base/0.png").convert_alpha(),
+                "viewing_angles": None,
+                "shift": 0.3,
+                "scale": (1.4, 0.9),
+                "side": 10,
+                "animation": deque(
+                    [
+                        pygame.image.load(f"sprites/pin/anim/{i}.png").convert_alpha()
+                        for i in range(1)
+                    ]
+                ),
+                "death_animation": [],
+                "is_dead": "immortal",
+                "dead_shift": None,
+                "animation_dist": 800,
+                "animation_speed": 1,
+                "blocked": True,
+                "flag": "decor",
+                "obj_action": [],
+                "name": "pin",
             },
-            'sprite_flame': {
-                'sprite': pygame.image.load('sprites/flame/base/0.png').convert_alpha(),
-                'viewing_angles': None,
-                'shift': 0.7,
-                'scale': (0.6, 0.6),
-                'side': 30,
-                'animation': deque(
-                    [pygame.image.load(f'sprites/flame/anim/{i}.png').convert_alpha() for i in range(60)]),
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': 1.8,
-                'animation_dist': 1800,
-                'animation_speed': 1,
-                'blocked': None,
-                'flag': 'decor',
-                'obj_action': [],
-                'name': 'flame'
+            "sprite_flame": {
+                "sprite": pygame.image.load("sprites/flame/base/0.png").convert_alpha(),
+                "viewing_angles": None,
+                "shift": 0.7,
+                "scale": (0.6, 0.6),
+                "side": 30,
+                "animation": deque(
+                    [
+                        pygame.image.load(f"sprites/flame/anim/{i}.png").convert_alpha()
+                        for i in range(60)
+                    ]
+                ),
+                "death_animation": [],
+                "is_dead": "immortal",
+                "dead_shift": 1.8,
+                "animation_dist": 1800,
+                "animation_speed": 1,
+                "blocked": None,
+                "flag": "decor",
+                "obj_action": [],
+                "name": "flame",
             },
-
-            'npc_end_boss': {
-                'sprite': [pygame.image.load(f'sprites/npc/devil0/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0.0,
-                'scale': (1.1, 1.1),
-                'side': 50,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/devil0/death/{i}.png')
-                                           .convert_alpha() for i in range(6)]),
-                'is_dead': None,
-                'dead_shift': 0.6,
-                'animation_dist': None,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'npc',
-                'obj_action': deque(
-                    [pygame.image.load(f'sprites/npc/devil0/anim/{i}.png').convert_alpha() for i in range(9)]),
-                'name': 'end_boss'
+            "npc_end_boss": {
+                "sprite": [
+                    pygame.image.load(
+                        f"sprites/npc/end_boss/base/{i}.png"
+                    ).convert_alpha()
+                    for i in range(8)
+                ],
+                "viewing_angles": True,
+                "shift": 0.0,
+                "scale": (1.1, 1.1),
+                "side": 50,
+                "animation": [],
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/end_boss/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 0.6,
+                "animation_dist": None,
+                "animation_speed": 30,
+                "blocked": True,
+                "flag": "npc",
+                "obj_action": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/end_boss/anim/{i}.png"
+                        ).convert_alpha()
+                        for i in range(5)
+                    ]
+                ),
+                "name": "end_boss",
             },
-            'npc_tiger': {
-                'sprite': [pygame.image.load(f'sprites/npc/tiger/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0,
-                'scale': (0.9, 1.0),
-                'side': 30,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/tiger/death/{i}.png')
-                                           .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 0.8,
-                'animation_dist': None,
-                'animation_speed': 5,
-                'blocked': True,  # <-------------------
-                'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/tiger/action/{i}.png')
-                                    .convert_alpha() for i in range(6)]),
-                'name': 'tiger'
+            "npc_tiger": {
+                "sprite": [
+                    pygame.image.load(f"sprites/npc/tiger/base/{i}.png").convert_alpha()
+                    for i in range(8)
+                ],
+                "viewing_angles": True,
+                "shift": 0,
+                "scale": (0.9, 1.0),
+                "side": 30,
+                "animation": [],
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/tiger/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 0.8,
+                "animation_dist": None,
+                "animation_speed": 5,
+                "blocked": True,  # <-------------------
+                "flag": "npc",
+                "obj_action": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/tiger/action/{i}.png"
+                        ).convert_alpha()
+                        for i in range(6)
+                    ]
+                ),
+                "name": "tiger",
             },
-            'npc_spriggan': {
-                'sprite': [pygame.image.load(f'sprites/npc/spriggan/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0.1,
-                'scale': (0.4, 1),
-                'side': 60,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/spriggan/death/{i}.png')
-                                           .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 1.7,
-                'animation_dist': None,
-                'animation_speed': 5,
-                'blocked': True,
-                'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/spriggan/action/{i}.png')
-                                           .convert_alpha() for i in range(5)]),
-                'name': 'spriggan'
+            "npc_spriggan": {
+                "sprite": [
+                    pygame.image.load(
+                        f"sprites/npc/spriggan/base/{i}.png"
+                    ).convert_alpha()
+                    for i in range(8)
+                ],
+                "viewing_angles": True,
+                "shift": 0.1,
+                "scale": (0.4, 1),
+                "side": 60,
+                "animation": [],
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/spriggan/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 1.7,
+                "animation_dist": None,
+                "animation_speed": 5,
+                "blocked": True,
+                "flag": "npc",
+                "obj_action": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/spriggan/action/{i}.png"
+                        ).convert_alpha()
+                        for i in range(5)
+                    ]
+                ),
+                "name": "spriggan",
             },
-            'npc_bear': {
-                'sprite': [pygame.image.load(f'sprites/npc/bear/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0,
-                'scale': (1, 1),
-                'side': 30,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/bear/death/{i}.png')
-                                           .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 0.8,
-                'animation_dist': None,
-                'animation_speed': 30,
-                'blocked': True,  # <-------------------
-                'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/bear/action/{i}.png')
-                                    .convert_alpha() for i in range(4)]),
-                'name': 'bear'
+            "npc_bear": {
+                "sprite": [
+                    pygame.image.load(f"sprites/npc/bear/base/{i}.png").convert_alpha()
+                    for i in range(8)
+                ],
+                "viewing_angles": True,
+                "shift": 0,
+                "scale": (1, 1),
+                "side": 30,
+                "animation": [],
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/bear/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 0.8,
+                "animation_dist": None,
+                "animation_speed": 30,
+                "blocked": True,  # <-------------------
+                "flag": "npc",
+                "obj_action": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/bear/action/{i}.png"
+                        ).convert_alpha()
+                        for i in range(4)
+                    ]
+                ),
+                "name": "bear",
             },
-            'sprite_door_v': {
-                'sprite': [pygame.image.load(f'sprites/doors/door_v/{i}.png').convert_alpha() for i in range(16)],
-                'viewing_angles': True,
-                'shift': 0.1,
-                'scale': (2.6, 1.2),
-                'side': 100,
-                'animation': [],
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': 0,
-                'animation_dist': 0,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'door_h',
-                'obj_action': [],
-                'name': 'door_v'
+            "sprite_door_v": {
+                "sprite": [
+                    pygame.image.load(f"sprites/doors/door_v/{i}.png").convert_alpha()
+                    for i in range(16)
+                ],
+                "viewing_angles": True,
+                "shift": 0.1,
+                "scale": (2.6, 1.2),
+                "side": 100,
+                "animation": [],
+                "death_animation": [],
+                "is_dead": "immortal",
+                "dead_shift": 0,
+                "animation_dist": 0,
+                "animation_speed": 1,
+                "blocked": True,
+                "flag": "door_h",
+                "obj_action": [],
+                "name": "door_v",
             },
-            'sprite_door_h': {
-                'sprite': [pygame.image.load(f'sprites/doors/door_h/{i}.png').convert_alpha() for i in range(16)],
-                'viewing_angles': True,
-                'shift': 0.1,
-                'scale': (2.6, 1.2),
-                'side': 100,
-                'animation': [],
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': 0,
-                'animation_dist': 0,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'door_v',
-                'obj_action': [],
-                'name': 'door_h'
+            "sprite_door_h": {
+                "sprite": [
+                    pygame.image.load(f"sprites/doors/door_h/{i}.png").convert_alpha()
+                    for i in range(16)
+                ],
+                "viewing_angles": True,
+                "shift": 0.1,
+                "scale": (2.6, 1.2),
+                "side": 100,
+                "animation": [],
+                "death_animation": [],
+                "is_dead": "immortal",
+                "dead_shift": 0,
+                "animation_dist": 0,
+                "animation_speed": 1,
+                "blocked": True,
+                "flag": "door_v",
+                "obj_action": [],
+                "name": "door_h",
             },
-
-            'npc_peaceful': {
-                'sprite': pygame.image.load('sprites/npc/peaceful/base/0.png').convert_alpha(),
-                'viewing_angles': None,
-                'shift': 0.1,
-                'scale': (1, 1),
-                'side': 30,
-                'animation': deque(
-                    [pygame.image.load(f'sprites/npc/peaceful/anim/{i}.png').convert_alpha() for i in range(2)]),
-                'death_animation': [],
-                'is_dead': 'immortal',
-                'dead_shift': None,
-                'animation_dist': 90,
-                'animation_speed': 1,
-                'blocked': True,
-                'flag': 'decor',
-                'obj_action': [],
-                'name': 'peaceful'
+            "npc_peaceful": {
+                "sprite": pygame.image.load(
+                    "sprites/npc/peaceful/base/0.png"
+                ).convert_alpha(),
+                "viewing_angles": None,
+                "shift": 0.1,
+                "scale": (1, 1),
+                "side": 30,
+                "animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/peaceful/anim/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "death_animation": [],
+                "is_dead": "immortal",
+                "dead_shift": None,
+                "animation_dist": 90,
+                "animation_speed": 1,
+                "blocked": True,
+                "flag": "decor",
+                "obj_action": [],
+                "name": "peaceful",
             },
-            'npc_boss': {
-                'sprite': [pygame.image.load(f'sprites/npc/boss/base/{i}.png').convert_alpha() for i in range(8)],
-                'viewing_angles': True,
-                'shift': 0,
-                'scale': (1.2, 1.6),
-                'side': 50,
-                'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/boss/death/{i}.png')
-                                         .convert_alpha() for i in range(2)]),
-                'is_dead': None,
-                'dead_shift': 0.8,
-                'animation_dist': None,
-                'animation_speed': 10,
-                'blocked': True,  # <-------------------
-                'flag': 'npc',
-                'obj_action': deque([pygame.image.load(f'sprites/npc/boss/anim/{i}.png')
-                                    .convert_alpha() for i in range(6)]),
-                'name': 'boss'
-
-
+            "npc_boss": {
+                "sprite": [
+                    pygame.image.load(f"sprites/npc/boss/base/{i}.png").convert_alpha()
+                    for i in range(8)
+                ],
+                "viewing_angles": True,
+                "shift": 0,
+                "scale": (1.2, 1.6),
+                "side": 50,
+                "animation": [],
+                "death_animation": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/boss/death/{i}.png"
+                        ).convert_alpha()
+                        for i in range(2)
+                    ]
+                ),
+                "is_dead": None,
+                "dead_shift": 0.8,
+                "animation_dist": None,
+                "animation_speed": 10,
+                "blocked": True,  # <-------------------
+                "flag": "npc",
+                "obj_action": deque(
+                    [
+                        pygame.image.load(
+                            f"sprites/npc/boss/anim/{i}.png"
+                        ).convert_alpha()
+                        for i in range(6)
+                    ]
+                ),
+                "name": "boss",
             },
-
         }
         self.list_of_objects = [
-            SpriteObject(self.sprite_parameters['npc_peaceful'], (8.5, 30.5)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (41.5, 2)),
+            SpriteObject(self.sprite_parameters["npc_peaceful"], (8.5, 30.5)),
+            SpriteObject(self.sprite_parameters["npc_boss"], (41.5, 2)),
             SpriteObject(self.sprite_parameters["sprite_pin"], (39.5, 5.5)),
-            SpriteObject(self.sprite_parameters['npc_tiger'], (17.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (24.5, 1)),
-            SpriteObject(self.sprite_parameters['npc_tiger'], (26.5, 2)),
-            SpriteObject(self.sprite_parameters['npc_bear'], (29.5, 11)),
-            SpriteObject(self.sprite_parameters['npc_tiger'], (38.5, 11)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (45.5, 24)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 21)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 19)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 16)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 13)),
-            SpriteObject(self.sprite_parameters['npc_spriggan'], (45.5, 10)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (29, 25)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (29, 30)),
-            SpriteObject(self.sprite_parameters['npc_boss'], (29, 28)),
-            SpriteObject(self.sprite_parameters['sprite_barrel'], (28, 28)),
+            SpriteObject(self.sprite_parameters["npc_tiger"], (17.5, 1)),
+            SpriteObject(self.sprite_parameters["npc_bear"], (24.5, 1)),
+            SpriteObject(self.sprite_parameters["npc_tiger"], (26.5, 2)),
+            SpriteObject(self.sprite_parameters["npc_bear"], (29.5, 11)),
+            SpriteObject(self.sprite_parameters["npc_tiger"], (38.5, 11)),
+            SpriteObject(self.sprite_parameters["npc_boss"], (45.5, 24)),
+            SpriteObject(self.sprite_parameters["npc_spriggan"], (45.5, 21)),
+            SpriteObject(self.sprite_parameters["npc_spriggan"], (45.5, 19)),
+            SpriteObject(self.sprite_parameters["npc_spriggan"], (45.5, 16)),
+            SpriteObject(self.sprite_parameters["npc_spriggan"], (45.5, 13)),
+            SpriteObject(self.sprite_parameters["npc_spriggan"], (45.5, 10)),
+            SpriteObject(self.sprite_parameters["npc_boss"], (29, 25)),
+            SpriteObject(self.sprite_parameters["npc_boss"], (29, 30)),
+            SpriteObject(self.sprite_parameters["npc_boss"], (29, 28)),
+            SpriteObject(self.sprite_parameters["sprite_barrel"], (28, 28)),
         ]
-
 
     @property
     def sprite_shot(self):
-        return min([obj.is_on_fire for obj in self.list_of_objects], default=(float('inf'), 0))
+        return min(
+            [obj.is_on_fire for obj in self.list_of_objects], default=(float("inf"), 0)
+        )
 
     @property
     def blocked_doors(self):
         blocked_doors = Dict.empty(key_type=types.UniTuple(int32, 2), value_type=int32)
         for obj in self.list_of_objects:
-            if obj.flag in {'door_h', 'door_v'} and obj.blocked:
+            if obj.flag in {"door_h", "door_v"} and obj.blocked:
                 i, j = mapping(obj.x, obj.y)
                 blocked_doors[(i, j)] = 0
         return blocked_doors
 
     def END(self):
-        self.list_of_objects.append(SpriteObject(self.sprite_parameters['npc_end_boss'], (7, 29)),)
+        self.list_of_objects.append(
+            SpriteObject(self.sprite_parameters["npc_end_boss"], (7, 29)),
+        )
 
 
 class SpriteObject:
     def __init__(self, parameters, pos):
-        self.object = parameters['sprite'].copy()
-        self.viewing_angles = parameters['viewing_angles']
-        self.shift = parameters['shift']
-        self.scale = parameters['scale']
-        self.animation = parameters['animation'].copy()
+        self.object = parameters["sprite"].copy()
+        self.viewing_angles = parameters["viewing_angles"]
+        self.shift = parameters["shift"]
+        self.scale = parameters["scale"]
+        self.animation = parameters["animation"].copy()
         # ---------------------
-        self.death_animation = parameters['death_animation'].copy()
-        self.is_dead = parameters['is_dead']
-        self.dead_shift = parameters['dead_shift']
+        self.death_animation = parameters["death_animation"].copy()
+        self.is_dead = parameters["is_dead"]
+        self.dead_shift = parameters["dead_shift"]
         # ---------------------
-        self.animation_dist = parameters['animation_dist']
-        self.animation_speed = parameters['animation_speed']
-        self.blocked = parameters['blocked']
-        self.flag = parameters['flag']
-        self.obj_action = parameters['obj_action'].copy()
+        self.animation_dist = parameters["animation_dist"]
+        self.animation_speed = parameters["animation_speed"]
+        self.blocked = parameters["blocked"]
+        self.flag = parameters["flag"]
+        self.obj_action = parameters["obj_action"].copy()
         self.x, self.y = pos[0] * TILE, pos[1] * TILE
-        self.side = parameters['side']
+        self.side = parameters["side"]
         self.dead_animation_count = 0
         self.animation_count = 0
         self.npc_action_trigger = False
         self.door_open_trigger = False
-        self.door_prev_pos = self.y if self.flag == 'door_h' else self.x
+        self.door_prev_pos = self.y if self.flag == "door_h" else self.x
         self.delete = False
         self.name = parameters["name"]
         if self.viewing_angles:
             if len(self.object) == 8:
-                self.sprite_angles = [frozenset(range(338, 361)) | frozenset(range(0, 23))] + \
-                                     [frozenset(range(i, i + 45)) for i in range(23, 338, 45)]
+                self.sprite_angles = [
+                    frozenset(range(338, 361)) | frozenset(range(0, 23))
+                ] + [frozenset(range(i, i + 45)) for i in range(23, 338, 45)]
             else:
-                self.sprite_angles = [frozenset(range(348, 361)) | frozenset(range(0, 11))] + \
-                                     [frozenset(range(i, i + 23)) for i in range(11, 348, 23)]
-            self.sprite_positions = {angle: pos for angle, pos in zip(self.sprite_angles, self.object)}
+                self.sprite_angles = [
+                    frozenset(range(348, 361)) | frozenset(range(0, 11))
+                ] + [frozenset(range(i, i + 23)) for i in range(11, 348, 23)]
+            self.sprite_positions = {
+                angle: pos for angle, pos in zip(self.sprite_angles, self.object)
+            }
 
     @property
     def is_on_fire(self):
-        if CENTER_RAY - self.side // 2 < self.current_ray < CENTER_RAY + self.side // 2 and self.blocked:
+        if (
+            CENTER_RAY - self.side // 2 < self.current_ray < CENTER_RAY + self.side // 2
+            and self.blocked
+        ):
             return (self.distance_to_sprite, self.proj_height)
-        return (float('inf'), None)
+        return (float("inf"), None)
 
     @property
     def pos(self):
@@ -311,7 +450,7 @@ class SpriteObject:
     def object_locate(self, player):
 
         dx, dy = self.x - player.x, self.y - player.y
-        self.distance_to_sprite = math.sqrt(dx ** 2 + dy ** 2)
+        self.distance_to_sprite = math.sqrt(dx**2 + dy**2)
 
         self.theta = math.atan2(dy, dx)
         gamma = self.theta - player.angle
@@ -321,13 +460,17 @@ class SpriteObject:
 
         delta_rays = int(gamma / DELTA_ANGLE)
         self.current_ray = CENTER_RAY + delta_rays
-        if self.flag not in {'door_h', 'door_v'}: # <------------------
-            self.distance_to_sprite *= math.cos(HALF_FOV - self.current_ray * DELTA_ANGLE)
+        if self.flag not in {"door_h", "door_v"}:  # <------------------
+            self.distance_to_sprite *= math.cos(
+                HALF_FOV - self.current_ray * DELTA_ANGLE
+            )
 
         fake_ray = self.current_ray + FAKE_RAYS
         if 0 <= fake_ray <= FAKE_RAYS_RANGE and self.distance_to_sprite > 30:
-            self.proj_height = min(int(PROJ_COEFF / self.distance_to_sprite),
-                                   DOUBLE_HEIGHT if self.flag not in {'door_h', 'door_v'} else HEIGHT) # <--------
+            self.proj_height = min(
+                int(PROJ_COEFF / self.distance_to_sprite),
+                DOUBLE_HEIGHT if self.flag not in {"door_h", "door_v"} else HEIGHT,
+            )  # <--------
             sprite_width = int(self.proj_height * self.scale[0])
             sprite_height = int(self.proj_height * self.scale[1])
             half_sprite_width = sprite_width // 2
@@ -335,13 +478,13 @@ class SpriteObject:
             shift = half_sprite_height * self.shift
 
             # logic for doors, npc, decors
-            if self.flag == 'door_h' or self.flag == 'door_v':
+            if self.flag == "door_h" or self.flag == "door_v":
                 if self.door_open_trigger:
                     self.door_open()
                 self.object = self.visible_sprite()
                 sprite_object = self.sprite_animation()
             else:
-                if self.is_dead and self.is_dead != 'immortal':
+                if self.is_dead and self.is_dead != "immortal":
                     sprite_object = self.dead_animation()
                     shift = half_sprite_height * self.dead_shift
                     sprite_height = int(sprite_height / 1.3)
@@ -353,8 +496,13 @@ class SpriteObject:
                     # sprite animation
                     sprite_object = self.sprite_animation()
 
-            sprite = pygame.transform.scale(sprite_object, (sprite_width, sprite_height))
-            sprite_pos = (self.current_ray * SCALE - half_sprite_width, HALF_HEIGHT - half_sprite_height + shift)
+            sprite = pygame.transform.scale(
+                sprite_object, (sprite_width, sprite_height)
+            )
+            sprite_pos = (
+                self.current_ray * SCALE - half_sprite_width,
+                HALF_HEIGHT - half_sprite_height + shift,
+            )
 
             return (self.distance_to_sprite, sprite, sprite_pos)
         else:
@@ -373,13 +521,13 @@ class SpriteObject:
 
     def Health_points(self, player):
         dx, dy = self.x - player.x, self.y - player.y
-        self.distance_to_sprite = math.sqrt(dx ** 2 + dy ** 2)
+        self.distance_to_sprite = math.sqrt(dx**2 + dy**2)
         if self.distance_to_sprite <= 100:
             HP[0] = int(HP[0]) - 0.5
-            if self.name == 'boss':
+            if self.name == "boss":
+                HP[0] = int(HP[0]) - 0.5
+            elif self.name == "end_boss":
                 HP[0] = int(HP[0]) - 1
-            elif self.name == 'end_boss':
-                HP[0] = int(HP[0]) - 2
 
     def visible_sprite(self):
         if self.viewing_angles:
@@ -414,11 +562,11 @@ class SpriteObject:
         return sprite_object
 
     def door_open(self):
-        if self.flag == 'door_h':
+        if self.flag == "door_h":
             self.y -= 3
             if abs(self.y - self.door_prev_pos) > TILE:
                 self.delete = True
-        elif self.flag == 'door_v':
+        elif self.flag == "door_v":
             self.x -= 3
             if abs(self.x - self.door_prev_pos) > TILE:
                 self.delete = True

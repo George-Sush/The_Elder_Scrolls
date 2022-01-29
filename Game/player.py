@@ -1,6 +1,13 @@
 from map import collision_walls
 import settings
-from settings import DOUBLE_PI, HALF_WIDTH, HALF_HEIGHT, player_pos, player_angle, player_speed
+from settings import (
+    DOUBLE_PI,
+    HALF_WIDTH,
+    HALF_HEIGHT,
+    player_pos,
+    player_angle,
+    player_speed,
+)
 import pygame
 import computer_settings
 import math
@@ -22,8 +29,11 @@ class Player:
 
     @property
     def collision_list(self):
-        return collision_walls + [pygame.Rect(*obj.pos, obj.side, obj.side) for obj
-                                  in self.sprites.list_of_objects if obj.blocked]
+        return collision_walls + [
+            pygame.Rect(*obj.pos, obj.side, obj.side)
+            for obj in self.sprites.list_of_objects
+            if obj.blocked
+        ]
 
     def movement(self):
         if settings.HP[0] < 100:
@@ -69,7 +79,7 @@ class Player:
             computer_settings.unhide_taskbar()
             exit()
         if keys[pygame.K_LSHIFT]:
-             player_speed = 10
+            player_speed = 10
         else:
             player_speed = 5
         if keys[pygame.K_w]:

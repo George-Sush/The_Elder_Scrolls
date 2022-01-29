@@ -7,12 +7,28 @@ from drawing import Drawing
 import settings
 import computer_settings
 from interaction import Interaction
-from settings import TILE, HALF_FOV, NUM_RAYS, math, PROJ_COEFF, DELTA_ANGLE, CENTER_RAY, HEIGHT, \
-    TEXTURE_SCALE, SCALE, TEXTURE_HEIGHT, HALF_WIDTH, HALF_HEIGHT, WIDTH, HEIGHT, MAP_RES
+from settings import (
+    TILE,
+    HALF_FOV,
+    NUM_RAYS,
+    math,
+    PROJ_COEFF,
+    DELTA_ANGLE,
+    CENTER_RAY,
+    HEIGHT,
+    TEXTURE_SCALE,
+    SCALE,
+    TEXTURE_HEIGHT,
+    HALF_WIDTH,
+    HALF_HEIGHT,
+    WIDTH,
+    HEIGHT,
+    MAP_RES,
+)
 
 
-if os.path.isfile('data.txt'):
-    os.remove('data.txt')
+if os.path.isfile("data.txt"):
+    os.remove("data.txt")
 computer_settings.hide_taskbar()
 pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT), pygame.DOUBLEBUF)
@@ -34,7 +50,9 @@ while True:
         player.movement()
         drawing.background()
         walls, wall_shot = ray_casting_walls(player, drawing.textures)
-        drawing.world(walls + [obj.object_locate(player) for obj in sprites.list_of_objects])
+        drawing.world(
+            walls + [obj.object_locate(player) for obj in sprites.list_of_objects]
+        )
         drawing.fps(clock)
         drawing.Hit_points()
         drawing.mini_map()
@@ -60,8 +78,8 @@ while True:
             computer_settings.unhide_taskbar()
             exit()
         if keys[pygame.K_SPACE]:
-            if os.path.isfile('data.txt'):
-                os.remove('data.txt')
+            if os.path.isfile("data.txt"):
+                os.remove("data.txt")
             settings.STATUS = settings.STATUS_PLAY
             settings.HP[0] = 100
             settings.NEED_TO_GO[0] = False
@@ -88,8 +106,8 @@ while True:
             computer_settings.unhide_taskbar()
             exit()
         if keys[pygame.K_SPACE]:
-            if os.path.isfile('data.txt'):
-                os.remove('data.txt')
+            if os.path.isfile("data.txt"):
+                os.remove("data.txt")
             settings.STATUS = settings.STATUS_PLAY
             settings.HP[0] = 100
             settings.NEED_TO_GO[0] = False
