@@ -69,22 +69,22 @@ class Sprites:
             },
 
             'npc_end_boss': {
-                'sprite': [pygame.image.load(f'sprites/npc/devil0/base/{i}.png').convert_alpha() for i in range(8)],
+                'sprite': [pygame.image.load(f'sprites/npc/end_boss/base/{i}.png').convert_alpha() for i in range(8)],
                 'viewing_angles': True,
                 'shift': 0.0,
                 'scale': (1.1, 1.1),
                 'side': 50,
                 'animation': [],
-                'death_animation': deque([pygame.image.load(f'sprites/npc/devil0/death/{i}.png')
-                                           .convert_alpha() for i in range(6)]),
+                'death_animation': deque([pygame.image.load(f'sprites/npc/end_boss/death/{i}.png')
+                                           .convert_alpha() for i in range(2)]),
                 'is_dead': None,
                 'dead_shift': 0.6,
                 'animation_dist': None,
-                'animation_speed': 1,
+                'animation_speed': 30,
                 'blocked': True,
                 'flag': 'npc',
                 'obj_action': deque(
-                    [pygame.image.load(f'sprites/npc/devil0/anim/{i}.png').convert_alpha() for i in range(9)]),
+                    [pygame.image.load(f'sprites/npc/end_boss/anim/{i}.png').convert_alpha() for i in range(5)]),
                 'name': 'end_boss'
             },
             'npc_tiger': {
@@ -377,9 +377,9 @@ class SpriteObject:
         if self.distance_to_sprite <= 100:
             HP[0] = int(HP[0]) - 0.5
             if self.name == 'boss':
-                HP[0] = int(HP[0]) - 1
+                HP[0] = int(HP[0]) - 0.5
             elif self.name == 'end_boss':
-                HP[0] = int(HP[0]) - 2
+                HP[0] = int(HP[0]) - 1
 
     def visible_sprite(self):
         if self.viewing_angles:
